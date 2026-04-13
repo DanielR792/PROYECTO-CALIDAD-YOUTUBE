@@ -20,8 +20,8 @@
     --color-peach: linear-gradient(135deg, #fed7aa, #fdba74);
     --color-blue: linear-gradient(135deg, #93c5fd, #60a5fa);
     --color-lightyellow: linear-gradient(135deg, #fde68a, #fcd34d);
-    --color-purple: linear-gradient(135deg, #c4b5fd, #a78bfa);
-    --color-green: linear-gradient(135deg, #86efac, #4ade80);
+    --color-purple: linear-gradient(135deg, #f5e9d8, #e6d1bc);
+    --color-green: linear-gradient(135deg, #e2e8f0, #cbd5e1);
     --color-darkblue: linear-gradient(135deg, #1e293b, #334155);
     
     /* Sombras Soft UI Mejoradas */
@@ -633,12 +633,12 @@ body {
 }
 .bg-purple, .furps-p { 
     background: var(--color-purple) !important; 
-    color: #581c87; 
+    color: #5d3a0f; 
     box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
 }
 .bg-green, .furps-s { 
     background: var(--color-green) !important; 
-    color: #14532d; 
+    color: #1f2937; 
     box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
 }
 
@@ -871,7 +871,13 @@ body {
 }
 
 .menu-overlay {
+    display: none;
+    pointer-events: none;
+}
+
+.menu-overlay.active {
     display: block;
+    pointer-events: auto;
 }
 
 .close-menu {

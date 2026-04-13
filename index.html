@@ -5,12 +5,15 @@
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
     <meta http-equiv="Pragma" content="no-cache" />
     <meta http-equiv="Expires" content="0" />
+    <link rel="icon" href="img/calidad-software.svg" type="image/svg+xml" />
     <title>Evaluación de Calidad de Software</title>
     <link rel="stylesheet" href="styles.css?v=2.0" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
+
+    <link rel="icon" href="lupa-youtube.png"/>
   </head>
   <body>
     <div class="bubble-bg bubble-1"></div>
@@ -50,7 +53,7 @@
         <button class="close-menu" id="closeMenu" aria-label="Cerrar menú">
           ✕
         </button>
-        <h3>Índice</h3>
+        <h3>ÍNDICE</h3>
         <ul>
           <li><a href="#info">1. Información del Software</a></li>
           <li><a href="#escala">2. Escala de Valoración</a></li>
@@ -68,24 +71,26 @@
           </li>
           <li class="has-submenu">
             <button class="toggle-submenu" aria-expanded="false">▼</button>
-            <a href="#boehm">5. El modelo Boehm</a>
+            <a href="#boehm">5. Modelo de la calidad Boehm</a>
             <ul class="submenu" style="display: none;">
               <li><a href="#boehm">5.1 Aplicación del modelo de calidad Boehm</a></li>
               <li><a href="#boehm">5.2 Descripción de las características primitivas y cuestionario</a></li>
               <li><a href="#boehm">5.3 Puntuación obtenida</a></li>
               <li><a href="#boehm">5.4 Resultados de la evaluación</a></li>
+              <li><a href="#boehm-interpretacion">5.5 Interpretación de resultados</a></li>
             </ul>
           </li>
           <li class="has-submenu">
             <button class="toggle-submenu" aria-expanded="false">▼</button>
-            <a href="#furps">6. El modelo FURPS</a>
+            <a href="#furps">6. Modelo de la calidad FURPS</a>
             <ul class="submenu" style="display: none;">
               <li><a href="#furps">6.1 Aplicación del modelo de la calidad FURPS</a></li>
               <li><a href="#furps">6.2 Aplicación de la evaluación al red</a></li>
               <li><a href="#furps">6.3 Equivalencia de puntajes</a></li>
+              <li><a href="#furps-interpretacion">6.4 Interpretación de resultados</a></li>
             </ul>
           </li>
-          <li><a href="#final">7. Comparación de resultados entre los modelos de evaluación de la calidad aplicados</a></li>
+          <li><a href="#comparacion">7. Comparación de resultados entre los modelos de evaluación de la calidad aplicados</a></li>
           <li><a href="#conclusiones">8. Conclusiones</a></li>
           <li><a href="#referencias">9. Referencias bibliográficas</a></li>
         </ul>
@@ -95,7 +100,7 @@
         <div id="info" class="info-card animate-slide-up hover-float">
           <div class="card-header">
             <span class="number-badge">01</span>
-            <h2>Información del Software</h2>
+            <h2>INFORMACIÓN DEL SOFTWARE</h2>
           </div>
           <h3 style="font-family: 'Nunito', sans-serif; color: var(--primary); font-size: 18px; margin-bottom: 20px;">SOFTWARE A EVALUAR </h3>
           <table class="tabla-moderna tabla-software">
@@ -170,7 +175,7 @@
         <div id="escala" class="info-card animate-slide-up hover-float">
           <div class="card-header">
             <span class="number-badge">02</span>
-            <h2>Escala de Valoraciones </h2>
+            <h2>ESCALA DE VALORACIONES</h2>
           </div>
           <p class="descripcion" style="margin-bottom: 25px;">
             Tabla de valoración: Se define la tabla de valoración a tener en cuenta en el desarrollo de las evaluaciones de todos los modelos trabajados en el informe, la cual quedará definida así:
@@ -201,18 +206,18 @@
         >
           <div class="card-header">
             <span class="number-badge">03</span>
-            <h2>Marco teórico</h2>
+            <h2>MARCO TEÓRICO</h2>
           </div>
 
           <div class="teoria-section">
-            <h3>McCall (1977)</h3>
+            <h3>MCCALL (1977)</h3>
             <p>
               Presentado en 1977 y propone una serie de factores de calidad conocidos como factores de McCall, Richards, & Walters (1977), la idea del modelo es la descomposición del concepto genérico de calidad en tres capacidades importantes para un producto software, operación, transición y revisión todo desde la mirada del usuario. (LEM Evaluación de la Calidad Educativa, Capítulo II (CVUDES). Rey, A. (2015).).
             </p>
           </div>
           <div class="teoria-divider"></div>
           <div class="teoria-section">
-            <h3>Boehm (1978)</h3>
+            <h3>BOEHM (1978)</h3>
             <p>
               Presentado por Barry Boehm en 1978, introduce características de alto nivel, características de nivel intermedio y características primitivas, cada una de las cuales contribuye al nivel general de calidad.
             </p>
@@ -228,8 +233,8 @@
 
         <div id="mccall" class="info-card animate-slide-up hover-float">
           <div class="card-header">
-            <span class="number-badge">04</span>
-            <h2>Modelo McCall - Capacidades y Factores</h2>
+            <span class="number-badge">4</span>
+            <h2>MODELO MCCALL - CAPACIDADES Y FACTORES</h2>
           </div>
           <h3 style="font-family: 'Nunito', sans-serif; color: var(--primary); font-size: 18px; margin-bottom: 10px;">APLICACIÓN DEL MODELO MACCALL </h3>
           <p class="descripcion" style="margin-bottom: 25px;">
@@ -306,8 +311,8 @@
 
         <div id="metricas" class="info-card animate-slide-up hover-float">
           <div class="card-header">
-            <span class="number-badge">05</span>
-            <h2>Relación Factores y Métricas</h2>
+            <span class="number-badge">4.2</span>
+            <h2>RELACIÓN FACTORES Y MÉTRICAS</h2>
           </div>
           <table class="tabla-moderna tabla-calidad">
             <thead>
@@ -553,11 +558,11 @@
 
         <div id="evaluacion" class="info-card animate-slide-up hover-float">
           <div class="card-header">
-            <span class="number-badge">06</span>
-            <h2>Evaluación, Consolidación y Resultados</h2>
+            <span class="number-badge">4.3</span>
+            <h2>EVALUACIÓN, CONSOLIDACIÓN Y RESULTADOS</h2>
           </div>
 
-          <h3 style="font-family: 'Nunito', sans-serif; color: var(--primary); font-size: 18px; margin-bottom: 20px;">Cuestionario </h3>
+          <h3 style="font-family: 'Nunito', sans-serif; color: var(--primary); font-size: 18px; margin-bottom: 20px;">CUESTIONARIO</h3>
           <table
             class="tabla-moderna tabla-evaluacion"
             style="margin-bottom: 30px"
@@ -960,7 +965,10 @@
             </tbody>
           </table>
 
-          <h3 style="font-family: 'Nunito', sans-serif; color: var(--primary); font-size: 18px; margin-bottom: 20px;">Resultados de la evaluación </h3>
+          <div style="margin-top: 30px;">
+            <span class="number-badge">4.4</span>
+            <h3 style="font-family: 'Nunito', sans-serif; color: var(--primary); font-size: 18px; margin-bottom: 20px; display: inline;">RESULTADOS DE LA EVALUACIÓN</h3>
+          </div>
           <table class="tabla-moderna tabla-resultado">
             <thead>
               <tr>
@@ -1047,7 +1055,8 @@
           </table>
 
           <div style="margin-top: 30px; padding: 25px; background: linear-gradient(135deg, rgba(244, 63, 94, 0.05), rgba(244, 63, 94, 0.02)); border-radius: 16px; border-left: 5px solid var(--primary);">
-              <h3 style="font-family: 'Nunito', sans-serif; color: var(--primary); margin-top: 0; font-size: 20px;">Interpretación de resultados </h3>
+              <span class="number-badge">4.5</span>
+              <h3 style="font-family: 'Nunito', sans-serif; color: var(--primary); margin-top: 0; font-size: 20px; display: inline;">INTERPRETACIÓN DE RESULTADOS</h3>
               <p class="descripcion" style="margin-bottom: 12px; color: var(--text-dark);">
                   La evaluación realizada al software YouTube mediante el modelo de calidad McCall arrojó un puntaje total de 89.1 sobre 100 , lo cual indica que la plataforma posee un alto nivel de calidad en términos generales.
               </p>
@@ -1068,8 +1077,8 @@
 
         <div id="boehm" class="info-card animate-slide-up hover-float">
           <div class="card-header">
-            <span class="number-badge">07</span>
-            <h2>Modelo Boehm - Características</h2>
+            <span class="number-badge">5</span>
+            <h2>MODELO BOEHM - CARACTERÍSTICAS</h2>
           </div>
           
           <h3 style="font-family: 'Nunito', sans-serif; color: var(--primary); font-size: 18px; margin-bottom: 10px;">APLICACIÓN DEL MODELO DE LA CALIDAD BOEHM </h3>
@@ -1188,7 +1197,10 @@
             </tbody>
           </table>
 
-          <h3 style="font-family: 'Nunito', sans-serif; color: var(--primary); font-size: 18px; margin-bottom: 20px;">Descripción de las características primitivas y cuestionario </h3>
+          <div style="margin-top: 20px;">
+            <span class="number-badge">5.2</span>
+            <h3 style="font-family: 'Nunito', sans-serif; color: var(--primary); font-size: 18px; margin-bottom: 20px; display: inline;">DESCRIPCIÓN DE LAS CARACTERÍSTICAS PRIMITIVAS Y CUESTIONARIO</h3>
+          </div>
           <table
             class="tabla-moderna tabla-caracteristicas"
             style="margin-bottom: 30px"
@@ -1335,7 +1347,10 @@
             </tbody>
           </table>
 
-          <h3 style="font-family: 'Nunito', sans-serif; color: var(--primary); font-size: 18px; margin-bottom: 20px;">Puntuación Obtenida </h3>
+          <div style="margin-top: 20px;">
+            <span class="number-badge">5.3</span>
+            <h3 style="font-family: 'Nunito', sans-serif; color: var(--primary); font-size: 18px; margin-bottom: 20px; display: inline;">PUNTUACIÓN OBTENIDA</h3>
+          </div>
           <table class="tabla-moderna tabla-caracteristicas" style="margin-bottom: 30px">
             <thead>
               <tr>
@@ -1484,7 +1499,10 @@
             </tbody>
           </table>
 
-          <h3 style="font-family: 'Nunito', sans-serif; color: var(--primary); font-size: 18px; margin-bottom: 20px;">Resultados de la evaluación </h3>
+          <div style="margin-top: 20px;">
+            <span class="number-badge">5.4</span>
+            <h3 style="font-family: 'Nunito', sans-serif; color: var(--primary); font-size: 18px; margin-bottom: 20px; display: inline;">RESULTADOS DE LA EVALUACIÓN</h3>
+          </div>
           <table class="tabla-moderna tabla-caracteristicas">
             <thead>
               <tr>
@@ -1632,12 +1650,31 @@
               </tr>
             </tbody>
           </table>
+
+          <div id="boehm-interpretacion" class="info-card animate-slide-up hover-float" style="margin-top: 20px;">
+            <div class="card-header">
+              <span class="number-badge">5.5</span>
+              <h2>INTERPRETACIÓN DE RESULTADOS</h2>
+            </div>
+            <p class="descripcion" style="margin-bottom: 12px; color: var(--text-dark);">
+              La evaluación del software YouTube mediante el modelo de Boehm arrojó un puntaje total de 76.26 sobre 100, lo que indica un nivel de calidad medio-alto.
+            </p>
+            <p class="descripcion" style="margin-bottom: 12px; color: var(--text-dark);">
+              En la utilidad general, se obtuvo un puntaje de 8.75, destacándose la portabilidad del sistema, aunque con dependencia de la conexión a internet. En la utilidad, se alcanzó un valor de 58.75, evidenciando buen desempeño en funcionalidad, eficiencia e interactividad, pero con debilidades en accesibilidad y precisión.
+            </p>
+            <p class="descripcion" style="margin-bottom: 12px; color: var(--text-dark);">
+              Por su parte, la mantenibilidad obtuvo un puntaje de 8.76, reflejando una estructura comprensible y escalable, aunque con limitaciones en la facilidad de prueba y adaptación.
+            </p>
+            <p class="descripcion" style="margin-bottom: 0; color: var(--text-dark);">
+              En general, YouTube es una plataforma funcional y eficiente, con oportunidades de mejora en accesibilidad, pruebas y dependencia de conexión.
+            </p>
+          </div>
         </div>
 
         <div id="furps" class="info-card animate-slide-up hover-float">
           <div class="card-header">
-            <span class="number-badge">08</span>
-            <h2>Modelo FURPS</h2>
+            <span class="number-badge">6</span>
+            <h2>MODELO FURPS</h2>
           </div>
           
           <h3 style="font-family: 'Nunito', sans-serif; color: var(--primary); font-size: 18px; margin-bottom: 10px;">APLICACIÓN DEL MODELO DE LA CALIDAD FURPS </h3>
@@ -1778,7 +1815,10 @@
             </tbody>
           </table>
 
-          <h3 style="font-family: 'Nunito', sans-serif; color: var(--primary); font-size: 18px; margin-bottom: 20px;">Aplicación de la evaluación al RED </h3>
+          <div style="margin-top: 20px;">
+            <span class="number-badge">6.2</span>
+            <h3 style="font-family: 'Nunito', sans-serif; color: var(--primary); font-size: 18px; margin-bottom: 20px; display: inline;">APLICACIÓN DE LA EVALUACIÓN AL RED</h3>
+          </div>
           <table class="tabla-moderna tabla-furps" style="margin-bottom: 30px">
             <thead>
               <tr>
@@ -1949,7 +1989,10 @@
             </tbody>
           </table>
 
-          <h3 style="font-family: 'Nunito', sans-serif; color: var(--primary); font-size: 18px; margin-bottom: 20px;">Equivalencia de Puntajes </h3>
+          <div style="margin-top: 20px;">
+            <span class="number-badge">6.3</span>
+            <h3 style="font-family: 'Nunito', sans-serif; color: var(--primary); font-size: 18px; margin-bottom: 20px; display: inline;">EQUIVALENCIA DE PUNTAJES</h3>
+          </div>
           <table class="tabla-moderna tabla-furps">
             <thead>
               <tr>
@@ -2105,11 +2148,39 @@
               </tr>
             </tbody>
           </table>
+
+          <div id="furps-interpretacion" class="info-card animate-slide-up hover-float" style="margin-top: 20px;">
+            <div class="card-header">
+              <span class="number-badge">6.4</span>
+              <h2>Interpretación de resultados</h2>
+            </div>
+            <p class="descripcion" style="margin-bottom: 12px; color: var(--text-dark);">
+              La evaluación realizada al software YouTube mediante el modelo de calidad FURPS arrojó un puntaje total de 93.5 sobre 100, lo cual indica un nivel de calidad muy alto.
+            </p>
+            <p class="descripcion" style="margin-bottom: 12px; color: var(--text-dark);">
+              En la funcionalidad, se obtuvo un puntaje de 27.5 sobre 30, evidenciando que la plataforma cuenta con amplias características y capacidades, así como una gran variedad de funciones. Sin embargo, la seguridad presenta un valor ligeramente menor, lo que indica oportunidades de mejora en este aspecto.
+            </p>
+            <p class="descripcion" style="margin-bottom: 12px; color: var(--text-dark);">
+              En la facilidad de uso, se alcanzó el puntaje máximo de 20 sobre 20, lo que demuestra que el sistema es altamente intuitivo, configurable y compatible con diferentes dispositivos, facilitando su uso por parte de los usuarios.
+            </p>
+            <p class="descripcion" style="margin-bottom: 12px; color: var(--text-dark);">
+              En la confiabilidad, se obtuvo un valor de 13.75 sobre 15, reflejando que el sistema es estable y presenta pocos fallos, además de ofrecer resultados precisos y buenas recomendaciones.
+            </p>
+            <p class="descripcion" style="margin-bottom: 12px; color: var(--text-dark);">
+              Por su parte, el rendimiento alcanzó un puntaje de 18.75 sobre 20, destacándose en aspectos como la experiencia del usuario, el diseño visual y la consistencia de la interfaz, aunque la documentación presenta un valor ligeramente inferior.
+            </p>
+            <p class="descripcion" style="margin-bottom: 12px; color: var(--text-dark);">
+              Finalmente, en el soporte, se obtuvo un puntaje de 13.5 sobre 15, lo que indica un buen desempeño general del sistema, aunque con oportunidades de mejora en la velocidad de procesamiento y el tiempo de respuesta.
+            </p>
+            <p class="descripcion" style="margin-bottom: 0; color: var(--text-dark);">
+              En términos generales, los resultados evidencian que YouTube es una plataforma altamente funcional, eficiente y fácil de usar, con un excelente desempeño global y mínimas áreas de mejora.
+            </p>
+          </div>
         </div>
 
-        <div id="final" class="info-card animate-slide-up hover-float">
+        <div id="comparacion" class="info-card animate-slide-up hover-float">
           <div class="card-header">
-            <span class="number-badge">09</span>
+            <span class="number-badge">07</span>
             <h2>COMPARACIÓN DE RESULTADOS ENTRE LOS MODELOS DE EVALUACIÓN DE LA CALIDAD APLICADOS </h2>
           </div>
           <table

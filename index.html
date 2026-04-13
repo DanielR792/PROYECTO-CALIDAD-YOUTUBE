@@ -1,1432 +1,2240 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>Software a Evaluar</title>
-    <style>
-        table {
-            margin: 40px auto; /* 40px de separación arriba/abajo y 'auto' para centrar */
-            border-collapse: collapse;
-            display: table; /* Asegura el comportamiento de tabla para el centrado */
-        }
-        
-        .titulo {
-            text-align: center;
-            margin-bottom: 50px;
-        }
-    </style>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <title>Evaluación de Calidad de Software</title>
+    <link rel="stylesheet" href="styles.css?v=2.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="bubble-bg bubble-1"></div>
+    <div class="bubble-bg bubble-2"></div>
 
-<h2 class="titulo">SOFTWARE A EVALUAR</h2>
+    <header class="main-header animate-pop-in">
+      <div class="header-content">
+        <div class="header-text">
+          <span class="curso-label">INGENIERÍA DE SOFTWARE 2</span>
+          <h1 class="main-title">Evaluación de Calidad de Software</h1>
+          <p class="descripcion">
+            Informe de evaluación de calidad aplicando los modelos
+            <strong>McCall, Boehm</strong> y <strong>FURPS</strong>.
+          </p>
+          <div class="badges-container">
+            <span class="badge">Enfoque: métricas y calidad</span>
+            <span class="badge">Modelos de Evaluación</span>
+          </div>
+        </div>
+        <div class="youtube-evaluacion-img floating-element">
+          <img src="img/calidad-software.svg" alt="Evaluación de Calidad de Software" />
+        </div>
+      </div>
+    </header>
 
-<table class="tabla-software">
-  <tr>
-    <td class="label">NOMBRE DEL SOFTWARE</td>
-    <td></td>
-  </tr>
-  <tr>
-    <td class="label">REPOSITORIO</td>
-    <td></td>
-  </tr>
-  <tr>
-    <td class="label">DESCRIPCIÓN</td>
-    <td></td>
-  </tr>
-  <tr>
-    <td class="label">LICENCIA DE USO</td>
-    <td></td>
-  </tr>
-  <tr>
-    <td class="label">ÁREA DE APLICACIÓN</td>
-    <td></td>
-  </tr>
-  <tr>
-    <td class="label">LINK DE ACCESO</td>
-    <td></td>
-  </tr>
-</table>
+    <div class="layout-container">
+      <!-- Botón Hamburguesa para abrir/cerrar el menú -->
+      <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">
+        <span class="hamburger">⋮</span>
+      </button>
 
-<table class="tabla-valoracion">
-    <tr>
-        <th>DESCRIPCIÓN</th>
-        <th>CUANTIFICACIÓN</th>
-    </tr>
-    <tr>
-        <td>EXCELENTE</td>
-        <td>4</td>
-    </tr>
-    <tr>
-        <td>BUENO</td>
-        <td>3</td>
-    </tr>
-    <tr>
-        <td>REGULAR</td>
-        <td>2</td>
-    </tr>
-    <tr>
-        <td>MALO</td>
-        <td>1</td>
-    </tr>
-</table>
+      <!-- Fondo oscuro al abrir menú (overlay) -->
+      <div class="menu-overlay" id="menuOverlay"></div>
 
-<table>
-    <thead>
-        <tr>
-            <th>CAPACIDAD</th>
-            <th>PUNTAJE</th>
-            <th>FACTOR</th>
-            <th>PUNTAJE</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr class="operacion">
-            <td rowspan="4" class="bold-text">OPERACIÓN</td>
-            <td rowspan="4">40</td>
-            <td class="align-left">Corrección</td>
-            <td>10</td>
-        </tr>
-        <tr class="operacion">
-            <td class="align-left">Confiabilidad</td>
-            <td>10</td>
-        </tr>
-        <tr class="operacion">
-            <td class="align-left">Usabilidad</td>
-            <td>10</td>
-        </tr>
-        <tr class="operacion">
-            <td class="align-left">Integridad o Seguridad</td>
-            <td>10</td>
-        </tr>
+      <!-- Sidebar colapsable -->
+      <aside class="sidebar animate-slide-up" id="sidebar">
+        <button class="close-menu" id="closeMenu" aria-label="Cerrar menú">
+          ✕
+        </button>
+        <h3>Índice</h3>
+        <ul>
+          <li><a href="#info">1. Información del Software</a></li>
+          <li><a href="#escala">2. Escala de Valoración</a></li>
+          <li><a href="#marco">3. Marco Teórico</a></li>
+          <li class="has-submenu">
+            <button class="toggle-submenu" aria-expanded="false">▼</button>
+            <a href="#mccall">4. Modelo McCall</a>
+            <ul class="submenu" style="display: none;">
+              <li><a href="#mccall">4.1 Aplicación del modelo McCall</a></li>
+              <li><a href="#metricas">4.2 Relación factores y métricas</a></li>
+              <li><a href="#evaluacion">4.3 Evaluación, consolidación y resultados</a></li>
+              <li><a href="#evaluacion">4.4 Resultados de la evaluación</a></li>
+              <li><a href="#final">4.5 Interpretación de resultados</a></li>
+            </ul>
+          </li>
+          <li class="has-submenu">
+            <button class="toggle-submenu" aria-expanded="false">▼</button>
+            <a href="#boehm">5. El modelo Boehm</a>
+            <ul class="submenu" style="display: none;">
+              <li><a href="#boehm">5.1 Aplicación del modelo de calidad Boehm</a></li>
+              <li><a href="#boehm">5.2 Descripción de las características primitivas y cuestionario</a></li>
+              <li><a href="#boehm">5.3 Puntuación obtenida</a></li>
+              <li><a href="#boehm">5.4 Resultados de la evaluación</a></li>
+            </ul>
+          </li>
+          <li class="has-submenu">
+            <button class="toggle-submenu" aria-expanded="false">▼</button>
+            <a href="#furps">6. El modelo FURPS</a>
+            <ul class="submenu" style="display: none;">
+              <li><a href="#furps">6.1 Aplicación del modelo de la calidad FURPS</a></li>
+              <li><a href="#furps">6.2 Aplicación de la evaluación al red</a></li>
+              <li><a href="#furps">6.3 Equivalencia de puntajes</a></li>
+            </ul>
+          </li>
+          <li><a href="#final">7. Comparación de resultados entre los modelos de evaluación de la calidad aplicados</a></li>
+          <li><a href="#conclusiones">8. Conclusiones</a></li>
+          <li><a href="#referencias">9. Referencias bibliográficas</a></li>
+        </ul>
+      </aside>
 
-        <tr class="transicion">
-            <td rowspan="3" class="bold-text">TRANSICIÓN</td>
-            <td rowspan="3">30</td>
-            <td class="align-left">Portabilidad</td>
-            <td>10</td>
-        </tr>
-        <tr class="transicion">
-            <td class="align-left">Reusabilidad</td>
-            <td>10</td>
-        </tr>
-        <tr class="transicion">
-            <td class="align-left">Interoperabilidad</td>
-            <td>10</td>
-        </tr>
+      <main class="content-area">
+        <div id="info" class="info-card animate-slide-up hover-float">
+          <div class="card-header">
+            <span class="number-badge">01</span>
+            <h2>Información del Software</h2>
+          </div>
+          <h3 style="font-family: 'Nunito', sans-serif; color: var(--primary); font-size: 18px; margin-bottom: 20px;">SOFTWARE A EVALUAR </h3>
+          <table class="tabla-moderna tabla-software">
+            <tr>
+              <td class="label">NOMBRE DEL SOFTWARE</td>
+              <td class="text-left">YouTube </td>
+            </tr>
+            <tr>
+              <td class="label">REPOSITORIO</td>
+              <td class="text-left">
+                <p>
+                  YouTube es una plataforma web propiedad de la empresa Google,
+                  que permite a los usuarios subir, visualizar, compartir e
+                  interactuar con contenido audiovisual en línea a través de
+                  internet.
+                </p>
+                <a
+                  href="https://www.youtube.com"
+                  target="_blank"
+                  class="link-btn"
+                  >Visitar Sitio <i class="fa-solid fa-arrow-right"></i
+                ></a>
+              </td>
+            </tr>
+            <tr>
+              <td class="label">DESCRIPCIÓN</td>
+              <td class="text-left">
+                <p>
+                  Plataforma web desarrollada utilizando tecnologías como HTML,
+                  CSS y JavaScript, que permite la reproducción de vídeos en
+                  streaming.
+                </p>
+                <p>Ofrece múltiples funcionalidades, entre ellas:</p>
+                <ul class="custom-ul">
+                  <li>Reproducción de videos </li>
+                  <li>Subida de contenido </li>
+                  <li>Comentarios e interacción </li>
+                  <li>Suscripciones a canales </li>
+                  <li>Transmisiones en vivo </li>
+                  <li>Recomendaciones personalizadas mediante algoritmos </li>
+                </ul>
+                <p>
+                  Se caracteriza por su alta disponibilidad, escalabilidad y uso
+                  masivo a nivel mundial.
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <td class="label">LICENCIA DE USO</td>
+              <td class="text-left">
+                <p>Licencia propietaria.</p>
+                <p>
+                  El uso de la plataforma es gratuito, pero está sujeto a
+                  términos y condiciones definidos por Google.
+                </p>
+                <p>
+                  El contenido publicado pertenece a los creadores y está
+                  protegido por derechos de autor.
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <td class="label">ÁREA DE APLICACIÓN</td>
+              <td class="text-left">
+                Entretenimiento, comunicación, marketing digital, información,
+                redes sociales y distribución de contenido multimedia.
+              </td>
+            </tr>
+          </table>
+        </div>
 
-        <tr class="revision">
-            <td rowspan="3" class="bold-text">REVISIÓN</td>
-            <td rowspan="3">30</td>
-            <td class="align-left">Facilidad<br>Mantenimiento</td>
-            <td>10</td>
-        </tr>
-        <tr class="revision">
-            <td class="align-left">Flexibilidad</td>
-            <td>10</td>
-        </tr>
-        <tr class="revision">
-            <td class="align-left">Facilidad de Prueba</td>
-            <td>10</td>
-        </tr>
+        <div id="escala" class="info-card animate-slide-up hover-float">
+          <div class="card-header">
+            <span class="number-badge">02</span>
+            <h2>Escala de Valoraciones </h2>
+          </div>
+          <p class="descripcion" style="margin-bottom: 25px;">
+            Tabla de valoración: Se define la tabla de valoración a tener en cuenta en el desarrollo de las evaluaciones de todos los modelos trabajados en el informe, la cual quedará definida así:
+          </p>
+          <div class="escala-3d-container">
+            <div class="escala-item excelente-3d">
+              <div class="escala-num">4 </div>
+              <div class="escala-text">EXCELENTE </div>
+            </div>
+            <div class="escala-item bueno-3d">
+              <div class="escala-num">3 </div>
+              <div class="escala-text">BUENO </div>
+            </div>
+            <div class="escala-item regular-3d">
+              <div class="escala-num">2 </div>
+              <div class="escala-text">REGULAR </div>
+            </div>
+            <div class="escala-item malo-3d">
+              <div class="escala-num">1 </div>
+              <div class="escala-text">MALO </div>
+            </div>
+          </div>
+        </div>
 
-        <tr>
-            <td class="footer-gris">Puntaje Total</td>
-            <td class="footer-gris">100</td>
-            <td class="footer-negro"></td>
-            <td class="footer-gris">100</td>
-        </tr>
-    </tbody>
-</table>
+        <div
+          id="marco"
+          class="info-card marco-card animate-slide-up hover-float"
+        >
+          <div class="card-header">
+            <span class="number-badge">03</span>
+            <h2>Marco teórico</h2>
+          </div>
 
-<table class="tabla-calidad">
-    <thead>
-        <tr>
-            <th colspan="2" class="top-left-cell">Relación entre Factores de Calidad y<br>Métricas de la Calidad</th>
-            <th colspan="10" class="bg-yellow">FACTORES DE CALIDAD</th>
-        </tr>
-        <tr>
-            <th rowspan="2" class="bg-yellow bottom-align">MÉTRICAS</th>
-            <th rowspan="2" class="bg-yellow bottom-align">DESCRIPCIÓN</th>
-            <th colspan="4" class="bg-peach">OPERACIÓN</th>
-            <th colspan="3" class="bg-blue">TRANSICIÓN</th>
-            <th colspan="3" class="bg-lightyellow">REVISIÓN</th>
-        </tr>
-        <tr>
-            <th class="bg-peach vertical-text"><span>Corrección</span></th>
-            <th class="bg-peach vertical-text"><span>Confiabilidad</span></th>
-            <th class="bg-peach vertical-text"><span>Usabilidad</span></th>
-            <th class="bg-peach vertical-text"><span>Integridad o Seguridad</span></th>
-            <th class="bg-blue vertical-text"><span>Portabilidad</span></th>
-            <th class="bg-blue vertical-text"><span>Reusabilidad</span></th>
-            <th class="bg-blue vertical-text"><span>Interoperabilidad</span></th>
-            <th class="bg-lightyellow vertical-text"><span>Facilidad Mantenimiento</span></th>
-            <th class="bg-lightyellow vertical-text"><span>Flexibilidad</span></th>
-            <th class="bg-lightyellow vertical-text"><span>Facilidad de Prueba</span></th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td class="text-left">Compleción de las funciones</td>
-            <td class="text-left">Grado en que se pudieron implementar las funciones requeridas.</td>
-            <td></td>
-            <td><span class="dot">●</span></td>
-            <td><span class="dot">●</span></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td class="text-left">Complejidad</td>
-            <td class="text-left">Complejidad del sistema</td>
-            <td></td>
-            <td><span class="dot">●</span></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td><span class="dot">●</span></td>
-            <td><span class="dot">●</span></td>
-        </tr>
-        <tr>
-            <td class="text-left">Concisión</td>
-            <td class="text-left">Efectividad del recurso</td>
-            <td></td>
-            <td></td>
-            <td><span class="dot">●</span></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td class="text-left">Consistencia</td>
-            <td class="text-left">Diseño uniforme del programa empleando técnicas de documentación.</td>
-            <td><span class="dot">●</span></td>
-            <td><span class="dot">●</span></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td class="text-left">Eficiencia de ejecución</td>
-            <td class="text-left">Rendimiento en tiempo de ejecución</td>
-            <td></td>
-            <td><span class="dot">●</span></td>
-            <td><span class="dot">●</span></td>
-            <td><span class="dot">●</span></td>
-            <td><span class="dot">●</span></td>
-            <td></td>
-            <td></td>
-            <td><span class="dot">●</span></td>
-            <td><span class="dot">●</span></td>
-            <td><span class="dot">●</span></td>
-        </tr>
-        <tr>
-            <td class="text-left">Estandarización de datos y estructuras</td>
-            <td class="text-left">Manejo de tipos de datos y estructuras uniformes a lo largo del programa</td>
-            <td><span class="dot">●</span></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td><span class="dot">●</span></td>
-            <td><span class="dot">●</span></td>
-            <td></td>
-            <td><span class="dot">●</span></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td class="text-left">Exactitud de cálculo y de control</td>
-            <td class="text-left">Precisión obtenida en los cálculos</td>
-            <td></td>
-            <td><span class="dot">●</span></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td class="text-left">Independencia del software</td>
-            <td class="text-left">Grado de independencia del software en relación al sistema operativo, y otras limitaciones del entorno.</td>
-            <td></td>
-            <td></td>
-            <td><span class="dot">●</span></td>
-            <td><span class="dot">●</span></td>
-            <td><span class="dot">●</span></td>
-            <td></td>
-            <td></td>
-            <td><span class="dot">●</span></td>
-            <td><span class="dot">●</span></td>
-            <td><span class="dot">●</span></td>
-        </tr>
-        <tr>
-            <td class="text-left">Modularidad</td>
-            <td class="text-left">Independencia funcional de los componentes.</td>
-            <td><span class="dot">●</span></td>
-            <td><span class="dot">●</span></td>
-            <td><span class="dot">●</span></td>
-            <td></td>
-            <td></td>
-            <td><span class="dot">●</span></td>
-            <td><span class="dot">●</span></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td class="text-left">Operatividad</td>
-            <td class="text-left">Facilidad de operación</td>
-            <td><span class="dot">●</span></td>
-            <td></td>
-            <td><span class="dot">●</span></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td class="text-left">Seguridad</td>
-            <td class="text-left">Disponibilidad de elementos de protección del recurso y la información.</td>
-            <td></td>
-            <td><span class="dot">●</span></td>
-            <td><span class="dot">●</span></td>
-            <td><span class="dot">●</span></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td class="text-left">Simplicidad</td>
-            <td class="text-left">Grado de dificultad para entender el recurso</td>
-            <td></td>
-            <td><span class="dot">●</span></td>
-            <td><span class="dot">●</span></td>
-            <td><span class="dot">●</span></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-    </tbody>
-</table>
+          <div class="teoria-section">
+            <h3>McCall (1977)</h3>
+            <p>
+              Presentado en 1977 y propone una serie de factores de calidad conocidos como factores de McCall, Richards, & Walters (1977), la idea del modelo es la descomposición del concepto genérico de calidad en tres capacidades importantes para un producto software, operación, transición y revisión todo desde la mirada del usuario. (LEM Evaluación de la Calidad Educativa, Capítulo II (CVUDES). Rey, A. (2015).).
+            </p>
+          </div>
+          <div class="teoria-divider"></div>
+          <div class="teoria-section">
+            <h3>Boehm (1978)</h3>
+            <p>
+              Presentado por Barry Boehm en 1978, introduce características de alto nivel, características de nivel intermedio y características primitivas, cada una de las cuales contribuye al nivel general de calidad.
+            </p>
+          </div>
+          <div class="teoria-divider"></div>
+          <div class="teoria-section">
+            <h3>FURPS (1987)</h3>
+            <p>
+              Robert Grady y Hewlett Packard (HP) en 1987, desarrollaron el modelo de calidad FURPS, el cual se emplea diferentes factores de calidad de software, identificando 5 características de los cuales se deriva su nombre Functionality, Usability , Reliability, Performance, Supportability (Funcionalidad, Facilidad de Uso, Fiabilidad, Rendimiento, Soporte).
+            </p>
+          </div>
+        </div>
 
-<table class="tabla-evaluacion">
-    <thead>
-        <tr>
-            <th>MÉTRICAS</th>
-            <th>DESCRIPCIÓN</th>
-            <th>PREGUNTAS</th>
-            <th>PUNTAJE<br>ESPERADO</th>
-            <th>PUNTAJE<br>OBTENIDO</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td class="col-texto">Compleción de las funciones</td>
-            <td class="col-texto">Grado en que se pudieron implementar las funciones requeridas.</td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td class="col-texto">Complejidad</td>
-            <td class="col-texto">Complejidad del sistema</td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td class="col-texto">Concisión</td>
-            <td class="col-texto">Efectividad del recurso</td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td class="col-texto">Consistencia</td>
-            <td class="col-texto">Diseño uniforme del programa empleando técnicas de documentación.</td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td class="col-texto">Eficiencia de ejecución</td>
-            <td class="col-texto">Rendimiento en tiempo de ejecución</td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td class="col-texto">Estandarización de datos y estructuras</td>
-            <td class="col-texto">Manejo de tipos de datos y estructuras uniformes a lo largo del programa</td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td class="col-texto">Exactitud de cálculo y de control</td>
-            <td class="col-texto">Precisión obtenida en los cálculos</td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td class="col-texto">Independencia del software</td>
-            <td class="col-texto">Grado de independencia del software en relación al sistema operativo, y otras limitaciones del entorno.</td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td class="col-texto">Modularidad</td>
-            <td class="col-texto">Independencia funcional de los componentes.</td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td class="col-texto">Operatividad</td>
-            <td class="col-texto">Facilidad de operación</td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td class="col-texto">Seguridad</td>
-            <td class="col-texto">Disponibilidad de elementos de protección del recurso y la información.</td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td class="col-texto">Simplicidad</td>
-            <td class="col-texto">Grado de dificultad para entender el recurso</td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-    </tbody>
-</table>
+        <div id="mccall" class="info-card animate-slide-up hover-float">
+          <div class="card-header">
+            <span class="number-badge">04</span>
+            <h2>Modelo McCall - Capacidades y Factores</h2>
+          </div>
+          <h3 style="font-family: 'Nunito', sans-serif; color: var(--primary); font-size: 18px; margin-bottom: 10px;">APLICACIÓN DEL MODELO MACCALL </h3>
+          <p class="descripcion" style="margin-bottom: 25px;">
+            Para la evaluación, se asignan los siguientes puntajes a cada capacidad, según los factores evaluados en el modelo de MacCall.
+          </p>
+          <table class="tabla-moderna">
+            <thead>
+              <tr>
+                <th class="bg-yellow">CAPACIDAD </th>
+                <th class="bg-yellow">PUNTAJE </th>
+                <th class="bg-yellow">FACTOR </th>
+                <th class="bg-yellow">PUNTAJE </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="operacion bg-peach">
+                <td rowspan="4" class="bold-text">OPERACIÓN </td>
+                <td rowspan="4">40 </td>
+                <td class="text-left">Corrección </td>
+                <td>10 </td>
+              </tr>
+              <tr class="operacion bg-peach">
+                <td class="text-left">Confiabilidad </td>
+                <td>10 </td>
+              </tr>
+              <tr class="operacion bg-peach">
+                <td class="text-left">Usabilidad </td>
+                <td>10 </td>
+              </tr>
+              <tr class="operacion bg-peach">
+                <td class="text-left">Integridad o Seguridad </td>
+                <td>10 </td>
+              </tr>
 
-<table class="tabla-consolidacion">
-    <thead>
-        <tr>
-            <th colspan="2" class="top-left-cell">Consolidación de Puntajes</th>
-            <th colspan="10" class="bg-yellow">FACTORES DE CALIDAD</th>
-        </tr>
-        <tr>
-            <th rowspan="2" class="bg-yellow bottom-align">MÉTRICAS</th>
-            <th rowspan="2" class="bg-yellow bottom-align">DESCRIPCIÓN</th>
-            <th colspan="4" class="bg-peach">OPERACIÓN</th>
-            <th colspan="3" class="bg-blue">TRANSICIÓN</th>
-            <th colspan="3" class="bg-lightyellow">REVISIÓN</th>
-        </tr>
-        <tr>
-            <th class="bg-peach vertical-text"><span>Corrección</span></th>
-            <th class="bg-peach vertical-text"><span>Confiabilidad</span></th>
-            <th class="bg-peach vertical-text"><span>Usabilidad</span></th>
-            <th class="bg-peach vertical-text"><span>Integridad o Seguridad</span></th>
-            <th class="bg-blue vertical-text"><span>Portabilidad</span></th>
-            <th class="bg-blue vertical-text"><span>Reusabilidad</span></th>
-            <th class="bg-blue vertical-text"><span>Interoperabilidad</span></th>
-            <th class="bg-lightyellow vertical-text"><span>Facilidad Mantenimiento</span></th>
-            <th class="bg-lightyellow vertical-text"><span>Flexibilidad</span></th>
-            <th class="bg-lightyellow vertical-text"><span>Facilidad de Prueba</span></th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td class="text-left">Compleción de las funciones</td>
-            <td class="text-left">Grado en que se pudieron implementar las funciones requeridas.</td>
-            <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-        </tr>
-        <tr>
-            <td class="text-left">Complejidad</td>
-            <td class="text-left">Complejidad del sistema</td>
-            <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-        </tr>
-        <tr>
-            <td class="text-left">Concisión</td>
-            <td class="text-left">Efectividad del recurso</td>
-            <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-        </tr>
-        <tr>
-            <td class="text-left">Consistencia</td>
-            <td class="text-left">Diseño uniforme del programa empleando técnicas de documentación.</td>
-            <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-        </tr>
-        <tr>
-            <td class="text-left">Eficiencia de ejecución</td>
-            <td class="text-left">Rendimiento en tiempo de ejecución</td>
-            <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-        </tr>
-        <tr>
-            <td class="text-left">Estandarización de datos y estructuras</td>
-            <td class="text-left">Manejo de tipos de datos y estructuras uniformes a lo largo del programa</td>
-            <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-        </tr>
-        <tr>
-            <td class="text-left">Exactitud de cálculo y de control</td>
-            <td class="text-left">Precisión obtenida en los cálculos</td>
-            <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-        </tr>
-        <tr>
-            <td class="text-left">Independencia del software</td>
-            <td class="text-left">Grado de independencia del software en relación al sistema operativo, y otras limitaciones del entorno.</td>
-            <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-        </tr>
-        <tr>
-            <td class="text-left">Modularidad</td>
-            <td class="text-left">Independencia funcional de los componentes.</td>
-            <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-        </tr>
-        <tr>
-            <td class="text-left">Operatividad</td>
-            <td class="text-left">Facilidad de operación</td>
-            <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-        </tr>
-        <tr>
-            <td class="text-left">Seguridad</td>
-            <td class="text-left">Disponibilidad de elementos de protección del recurso y la información.</td>
-            <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-        </tr>
-        <tr>
-            <td class="text-left">Simplicidad</td>
-            <td class="text-left">Grado de dificultad para entender el recurso</td>
-            <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-        </tr>
+              <tr class="transicion bg-blue">
+                <td rowspan="3" class="bold-text">TRANSICIÓN </td>
+                <td rowspan="3">30 </td>
+                <td class="text-left">Portabilidad </td>
+                <td>10 </td>
+              </tr>
+              <tr class="transicion bg-blue">
+                <td class="text-left">Reusabilidad </td>
+                <td>10 </td>
+              </tr>
+              <tr class="transicion bg-blue">
+                <td class="text-left">Interoperabilidad </td>
+                <td>10 </td>
+              </tr>
 
-        <tr>
-            <td colspan="2" class="text-left bold-text bg-gray">PUNTAJE PROMEDIO DE CADA FACTOR</td>
-            <td class="bg-gray"></td><td class="bg-gray"></td><td class="bg-gray"></td><td class="bg-gray"></td>
-            <td class="bg-gray"></td><td class="bg-gray"></td><td class="bg-gray"></td>
-            <td class="bg-gray"></td><td class="bg-gray"></td><td class="bg-gray"></td>
-        </tr>
-        <tr>
-            <td colspan="2" class="text-left bold-text bg-gray">PUNTAJE ESCALA DE CADA FACTOR</td>
-            <td class="bg-gray"></td><td class="bg-gray"></td><td class="bg-gray"></td><td class="bg-gray"></td>
-            <td class="bg-gray"></td><td class="bg-gray"></td><td class="bg-gray"></td>
-            <td class="bg-gray"></td><td class="bg-gray"></td><td class="bg-gray"></td>
-        </tr>
-        <tr>
-            <td colspan="2" class="text-left bold-text bg-gray">PROMEDIO OBTENIDO POR CAPACIDAD</td>
-            <td colspan="4" class="bg-gray"></td> <td colspan="3" class="bg-gray"></td> <td colspan="3" class="bg-gray"></td> </tr>
-    </tbody>
-</table>
+              <tr class="revision bg-lightyellow">
+                <td rowspan="3" class="bold-text">REVISIÓN </td>
+                <td rowspan="3">30 </td>
+                <td class="text-left">Facilidad<br />Mantenimiento </td>
+                <td>10 </td>
+              </tr>
+              <tr class="revision bg-lightyellow">
+                <td class="text-left">Flexibilidad </td>
+                <td>10 </td>
+              </tr>
+              <tr class="revision bg-lightyellow">
+                <td class="text-left">Facilidad de Prueba </td>
+                <td>10 </td>
+              </tr>
 
-<table class="tabla-resultado">
-    <thead>
-        <tr>
-            <th>CAPACIDAD</th>
-            <th>PUNTAJE<br>GLOBAL</th>
-            <th>FACTOR</th>
-            <th>PUNTAJE<br>FACTOR</th>
-            <th>PUNTAJE<br>OBTENIDO</th>
-            <th>PUNTAJE<br>CAPACIDAD</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr class="operacion">
-            <td rowspan="4" class="bold-text">OPERACIÓN</td>
-            <td rowspan="4">40</td>
-            <td class="align-left">Corrección</td>
-            <td>10</td>
-            <td></td>
-            <td rowspan="4"></td>
-        </tr>
-        <tr class="operacion">
-            <td class="align-left">Confiabilidad</td>
-            <td>10</td>
-            <td></td>
-        </tr>
-        <tr class="operacion">
-            <td class="align-left">Usabilidad</td>
-            <td>10</td>
-            <td></td>
-        </tr>
-        <tr class="operacion">
-            <td class="align-left">Integridad o Seguridad</td>
-            <td>10</td>
-            <td></td>
-        </tr>
+              <tr>
+                <td class="footer-gris">Puntaje Total </td>
+                <td class="footer-gris">100 </td>
+                <td class="footer-negro"></td>
+                <td class="footer-gris">100 </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
 
-        <tr class="transicion">
-            <td rowspan="3" class="bold-text">TRANSICIÓN</td>
-            <td rowspan="3">30</td>
-            <td class="align-left">Portabilidad</td>
-            <td>10</td>
-            <td></td>
-            <td rowspan="3"></td>
-        </tr>
-        <tr class="transicion">
-            <td class="align-left">Reusabilidad</td>
-            <td>10</td>
-            <td></td>
-        </tr>
-        <tr class="transicion">
-            <td class="align-left">Interoperabilidad</td>
-            <td>10</td>
-            <td></td>
-        </tr>
+        <div id="metricas" class="info-card animate-slide-up hover-float">
+          <div class="card-header">
+            <span class="number-badge">05</span>
+            <h2>Relación Factores y Métricas</h2>
+          </div>
+          <table class="tabla-moderna tabla-calidad">
+            <thead>
+              <tr>
+                <th colspan="2" class="top-left-cell">
+                  Relación entre Factores de Calidad y<br />Métricas de la
+                  Calidad 
+                </th>
+                <th colspan="10" class="bg-yellow">FACTORES DE CALIDAD </th>
+              </tr>
+              <tr>
+                <th rowspan="2" class="bg-yellow bottom-align">MÉTRICAS </th>
+                <th rowspan="2" class="bg-yellow bottom-align">DESCRIPCIÓN </th>
+                <th colspan="4" class="bg-peach">OPERACIÓN </th>
+                <th colspan="3" class="bg-blue">TRANSICIÓN </th>
+                <th colspan="3" class="bg-lightyellow">REVISIÓN </th>
+              </tr>
+              <tr>
+                <th class="bg-peach">
+                  <div class="vertical-text">Corrección </div>
+                </th>
+                <th class="bg-peach">
+                  <div class="vertical-text">Confiabilidad </div>
+                </th>
+                <th class="bg-peach">
+                  <div class="vertical-text">Usabilidad </div>
+                </th>
+                <th class="bg-peach">
+                  <div class="vertical-text">Integridad o Seguridad </div>
+                </th>
+                <th class="bg-blue">
+                  <div class="vertical-text">Portabilidad </div>
+                </th>
+                <th class="bg-blue">
+                  <div class="vertical-text">Reusabilidad </div>
+                </th>
+                <th class="bg-blue">
+                  <div class="vertical-text">Interoperabilidad </div>
+                </th>
+                <th class="bg-lightyellow">
+                  <div class="vertical-text">Facilidad Mantenimiento </div>
+                </th>
+                <th class="bg-lightyellow">
+                  <div class="vertical-text">Flexibilidad </div>
+                </th>
+                <th class="bg-lightyellow">
+                  <div class="vertical-text">Facilidad de Prueba </div>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="text-left">Compleción de las funciones </td>
+                <td class="text-left">
+                  Grado en que se pudieron implementar las funciones requeridas.
+                </td>
+                <td><span class="dot">●</span> </td>
+                <td><span class="dot">●</span> </td>
+                <td><span class="dot">●</span> </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="text-left">Complejidad </td>
+                <td class="text-left">Complejidad del sistema </td>
+                <td></td>
+                <td><span class="dot">●</span> </td>
+                <td><span class="dot">●</span> </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><span class="dot">●</span> </td>
+                <td><span class="dot">●</span> </td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="text-left">Concisión </td>
+                <td class="text-left">Efectividad del recurso </td>
+                <td></td>
+                <td></td>
+                <td><span class="dot">●</span> </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="text-left">Consistencia </td>
+                <td class="text-left">
+                  Diseño uniforme del programa empleando técnicas de
+                  documentación.
+                </td>
+                <td><span class="dot">●</span> </td>
+                <td><span class="dot">●</span> </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="text-left">Eficiencia de ejecución </td>
+                <td class="text-left">Rendimiento en tiempo de ejecución </td>
+                <td></td>
+                <td><span class="dot">●</span> </td>
+                <td><span class="dot">●</span> </td>
+                <td><span class="dot">●</span> </td>
+                <td><span class="dot">●</span> </td>
+                <td></td>
+                <td></td>
+                <td><span class="dot">●</span> </td>
+                <td><span class="dot">●</span> </td>
+                <td><span class="dot">●</span> </td>
+              </tr>
+              <tr>
+                <td class="text-left">
+                  Estandarización de datos y estructuras 
+                </td>
+                <td class="text-left">
+                  Manejo de tipos de datos y estructuras uniformes a lo largo
+                  del programa 
+                </td>
+                <td><span class="dot">●</span> </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><span class="dot">●</span> </td>
+                <td><span class="dot">●</span> </td>
+                <td></td>
+                <td><span class="dot">●</span> </td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="text-left">Exactitud de cálculo y de control </td>
+                <td class="text-left">Precisión obtenida en los cálculos </td>
+                <td></td>
+                <td><span class="dot">●</span> </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="text-left">Independencia del software </td>
+                <td class="text-left">
+                  Grado de independencia del software en relación al sistema
+                  operativo, y otras limitaciones del entorno.
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><span class="dot">●</span> </td>
+                <td><span class="dot">●</span> </td>
+                <td><span class="dot">●</span> </td>
+                <td></td>
+                <td></td>
+                <td><span class="dot">●</span> </td>
+                <td><span class="dot">●</span> </td>
+              </tr>
+              <tr>
+                <td class="text-left">Modularidad </td>
+                <td class="text-left">
+                  Independencia funcional de los componentes.
+                </td>
+                <td><span class="dot">●</span> </td>
+                <td><span class="dot">●</span> </td>
+                <td><span class="dot">●</span> </td>
+                <td></td>
+                <td></td>
+                <td><span class="dot">●</span> </td>
+                <td><span class="dot">●</span> </td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="text-left">Operatividad </td>
+                <td class="text-left">Facilidad de operación </td>
+                <td><span class="dot">●</span> </td>
+                <td></td>
+                <td><span class="dot">●</span> </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="text-left">Seguridad </td>
+                <td class="text-left">
+                  Disponibilidad de elementos de protección del recurso y la
+                  información.
+                </td>
+                <td></td>
+                <td><span class="dot">●</span> </td>
+                <td><span class="dot">●</span> </td>
+                <td><span class="dot">●</span> </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="text-left">Simplicidad </td>
+                <td class="text-left">
+                  Grado de dificultad para entender el recurso 
+                </td>
+                <td></td>
+                <td><span class="dot">●</span> </td>
+                <td><span class="dot">●</span> </td>
+                <td><span class="dot">●</span> </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
 
-        <tr class="revision">
-            <td rowspan="3" class="bold-text">REVISIÓN</td>
-            <td rowspan="3">30</td>
-            <td class="align-left">Facilidad<br>Mantenimiento</td>
-            <td>10</td>
-            <td></td>
-            <td rowspan="3"></td>
-        </tr>
-        <tr class="revision">
-            <td class="align-left">Flexibilidad</td>
-            <td>10</td>
-            <td></td>
-        </tr>
-        <tr class="revision">
-            <td class="align-left">Facilidad de Prueba</td>
-            <td>10</td>
-            <td></td>
-        </tr>
+        <div id="evaluacion" class="info-card animate-slide-up hover-float">
+          <div class="card-header">
+            <span class="number-badge">06</span>
+            <h2>Evaluación, Consolidación y Resultados</h2>
+          </div>
 
-        <tr>
-            <td class="footer-gris">Puntaje Total</td>
-            <td class="footer-gris">100</td>
-            <td class="footer-negro"></td>
-            <td class="footer-gris">100</td>
-            <td class="footer-gris"></td>
-            <td class="footer-gris"></td>
-        </tr>
-    </tbody>
-</table>
+          <h3 style="font-family: 'Nunito', sans-serif; color: var(--primary); font-size: 18px; margin-bottom: 20px;">Cuestionario </h3>
+          <table
+            class="tabla-moderna tabla-evaluacion"
+            style="margin-bottom: 30px"
+          >
+            <thead>
+              <tr>
+                <th class="bg-yellow">MÉTRICAS </th>
+                <th class="bg-yellow">DESCRIPCIÓN </th>
+                <th class="bg-yellow">PREGUNTAS </th>
+                <th class="bg-yellow">PUNTAJE<br />ESPERADO </th>
+                <th class="bg-yellow">PUNTAJE<br />OBTENIDO </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="text-left">Compleción de las funciones </td>
+                <td class="text-left">
+                  Grado en que se pudieron implementar las funciones requeridas.
+                </td>
+                <td>¿YouTube cumple con ver, subir y compartir videos? </td>
+                <td>Excelente </td>
+                <td>Excelente </td>
+              </tr>
+              <tr>
+                <td class="text-left">Complejidad </td>
+                <td class="text-left">Complejidad del sistema </td>
+                <td>¿Es fácil de usar y navegar? </td>
+                <td>Excelente </td>
+                <td>Excelente </td>
+              </tr>
+              <tr>
+                <td class="text-left">Concisión </td>
+                <td class="text-left">Efectividad del recurso </td>
+                <td>¿YouTube funciona de forma eficiente sin elementos innecesarios? </td>
+                <td>Bueno </td>
+                <td>Bueno </td>
+              </tr>
+              <tr>
+                <td class="text-left">Consistencia </td>
+                <td class="text-left">
+                  Diseño uniforme del programa empleando técnicas de
+                  documentación.
+                </td>
+                <td>¿Mantiene diseño coherente en todas las páginas? </td>
+                <td>Excelente </td>
+                <td>Excelente </td>
+              </tr>
+              <tr>
+                <td class="text-left">Eficiencia de ejecución </td>
+                <td class="text-left">Rendimiento en tiempo de ejecución </td>
+                <td>¿Carga rápido y sin fallos? </td>
+                <td>Bueno </td>
+                <td>Bueno </td>
+              </tr>
+              <tr>
+                <td class="text-left">
+                  Estandarización de datos y estructuras 
+                </td>
+                <td class="text-left">
+                  Manejo de tipos de datos y estructuras uniformes a lo largo
+                  del programa 
+                </td>
+                <td>¿Gestiona bien cuentas, historial y preferencias? </td>
+                <td>Excelente </td>
+                <td>Excelente </td>
+              </tr>
+              <tr>
+                <td class="text-left">Exactitud de cálculo y de control </td>
+                <td class="text-left">Precisión obtenida en los cálculos </td>
+                <td>¿Reproduce videos correctamente sin errores? </td>
+                <td>Excelente </td>
+                <td>Bueno </td>
+              </tr>
+              <tr>
+                <td class="text-left">Independencia del software </td>
+                <td class="text-left">
+                  Grado de independencia del software en relación al sistema
+                  operativo, y otras limitaciones del entorno.
+                </td>
+                <td>¿Funciona en todos los dispositivos y navegadores? </td>
+                <td>Excelente </td>
+                <td>Excelente </td>
+              </tr>
+              <tr>
+                <td class="text-left">Modularidad </td>
+                <td class="text-left">
+                  Independencia funcional de los componentes.
+                </td>
+                <td>¿Está bien organizada la plataforma? </td>
+                <td>Bueno </td>
+                <td>Bueno </td>
+              </tr>
+              <tr>
+                <td class="text-left">Operatividad </td>
+                <td class="text-left">Facilidad de operación </td>
+                <td>¿Es fácil interactuar con la plataforma? </td>
+                <td>Excelente </td>
+                <td>Excelente </td>
+              </tr>
+              <tr>
+                <td class="text-left">Seguridad </td>
+                <td class="text-left">
+                  Disponibilidad de elementos de protección del recurso y la
+                  información.
+                </td>
+                <td>¿Tiene control de cuentas y privacidad? </td>
+                <td>Excelente </td>
+                <td>Bueno </td>
+              </tr>
+              <tr>
+                <td class="text-left">Simplicidad </td>
+                <td class="text-left">
+                  Grado de dificultad para entender el recurso 
+                </td>
+                <td>¿Es fácil entender cómo usarla? </td>
+                <td>Excelente </td>
+                <td>Excelente </td>
+              </tr>
+            </tbody>
+          </table>
 
-<table class="tabla-caracteristicas">
-    <thead>
-        <tr>
-            <th class="bg-darkblue" style="border:none;"></th>
-            <th>CARACTERÍSTICAS DE<br>ALTO NIVEL</th>
-            <th>PUNTAJE</th>
-            <th>CARACTERÍSTICAS DE<br>NIVEL INTERMEDIO</th>
-            <th>CARACTERÍSTICAS<br>PRIMITIVAS</th>
-            <th>PUNTAJE</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr class="bg-peach">
-            <td rowspan="18" class="bg-darkblue"><div class="vertical-text">UTILIDAD GENERAL</div></td>
-            <td rowspan="2" style="font-weight:bold;">PORTABILIDAD</td>
-            <td rowspan="2">10</td>
-            <td rowspan="2"></td>
-            <td class="text-left">Independencia de Dispositivos</td>
-            <td>5</td>
-        </tr>
-        <tr class="bg-peach">
-            <td class="text-left">Auto-contención</td>
-            <td>5</td>
-        </tr>
+          <table
+            class="tabla-moderna tabla-consolidacion"
+            style="margin-bottom: 30px"
+          >
+            <thead>
+              <tr>
+                <th colspan="2" class="top-left-cell">
+                  Consolidación de Puntajes 
+                </th>
+                <th colspan="10" class="bg-yellow">FACTORES DE CALIDAD </th>
+              </tr>
+              <tr>
+                <th rowspan="2" class="bg-yellow bottom-align">MÉTRICAS </th>
+                <th rowspan="2" class="bg-yellow bottom-align">DESCRIPCIÓN </th>
+                <th colspan="4" class="bg-peach">OPERACIÓN </th>
+                <th colspan="3" class="bg-blue">TRANSICIÓN </th>
+                <th colspan="3" class="bg-lightyellow">REVISIÓN </th>
+              </tr>
+              <tr>
+                <th class="bg-peach">
+                  <div class="vertical-text">Corrección </div>
+                </th>
+                <th class="bg-peach">
+                  <div class="vertical-text">Confiabilidad </div>
+                </th>
+                <th class="bg-peach">
+                  <div class="vertical-text">Usabilidad </div>
+                </th>
+                <th class="bg-peach">
+                  <div class="vertical-text">Integridad o Seguridad </div>
+                </th>
+                <th class="bg-blue">
+                  <div class="vertical-text">Portabilidad </div>
+                </th>
+                <th class="bg-blue">
+                  <div class="vertical-text">Reusabilidad </div>
+                </th>
+                <th class="bg-blue">
+                  <div class="vertical-text">Interoperabilidad </div>
+                </th>
+                <th class="bg-lightyellow">
+                  <div class="vertical-text">Facilidad Mantenimiento </div>
+                </th>
+                <th class="bg-lightyellow">
+                  <div class="vertical-text">Flexibilidad </div>
+                </th>
+                <th class="bg-lightyellow">
+                  <div class="vertical-text">Facilidad de Prueba </div>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="text-left">Compleción de las funciones </td>
+                <td class="text-left">
+                  Grado en que se pudieron implementar las funciones requeridas.
+                </td>
+                <td>4 </td>
+                <td>4 </td>
+                <td>4 </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="text-left">Complejidad </td>
+                <td class="text-left">Complejidad del sistema </td>
+                <td></td>
+                <td>4 </td>
+                <td>4 </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>4 </td>
+                <td>4 </td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="text-left">Concisión </td>
+                <td class="text-left">Efectividad del recurso </td>
+                <td></td>
+                <td></td>
+                <td>3 </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="text-left">Consistencia </td>
+                <td class="text-left">
+                  Diseño uniforme del programa empleando técnicas de
+                  documentación.
+                </td>
+                <td>4 </td>
+                <td>4 </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="text-left">Eficiencia de ejecución </td>
+                <td class="text-left">Rendimiento en tiempo de ejecución </td>
+                <td></td>
+                <td>3 </td>
+                <td>3 </td>
+                <td>3 </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>3 </td>
+                <td>3 </td>
+                <td>3 </td>
+              </tr>
+              <tr>
+                <td class="text-left">
+                  Estandarización de datos y estructuras 
+                </td>
+                <td class="text-left">
+                  Manejo de tipos de datos y estructuras uniformes a lo largo
+                  del programa 
+                </td>
+                <td>4 </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>4 </td>
+                <td>4 </td>
+                <td></td>
+                <td>4 </td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="text-left">Exactitud de cálculo y de control </td>
+                <td class="text-left">Precisión obtenida en los cálculos </td>
+                <td></td>
+                <td>3 </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="text-left">Independencia del software </td>
+                <td class="text-left">
+                  Grado de independencia del software en relación al sistema
+                  operativo, y otras limitaciones del entorno.
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>4 </td>
+                <td>4 </td>
+                <td>4 </td>
+                <td></td>
+                <td>4 </td>
+                <td>4 </td>
+              </tr>
+              <tr>
+                <td class="text-left">Modularidad </td>
+                <td class="text-left">
+                  Independencia funcional de los componentes.
+                </td>
+                <td>3 </td>
+                <td>3 </td>
+                <td>3 </td>
+                <td></td>
+                <td></td>
+                <td>3 </td>
+                <td>3 </td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="text-left">Operatividad </td>
+                <td class="text-left">Facilidad de operación </td>
+                <td>4 </td>
+                <td></td>
+                <td>4 </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="text-left">Seguridad </td>
+                <td class="text-left">
+                  Disponibilidad de elementos de protección del recurso y la
+                  información.
+                </td>
+                <td></td>
+                <td>3 </td>
+                <td>3 </td>
+                <td>3 </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="text-left">Simplicidad </td>
+                <td class="text-left">
+                  Grado de dificultad para entender el recurso 
+                </td>
+                <td></td>
+                <td>4 </td>
+                <td>4 </td>
+                <td>4 </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td colspan="2" class="text-left bold-text bg-gray">
+                  PUNTAJE PROMEDIO DE CADA FACTOR 
+                </td>
+                <td class="bg-gray">3.8 </td>
+                <td class="bg-gray">3.6 </td>
+                <td class="bg-gray">3.6 </td>
+                <td class="bg-gray">3.5 </td>
+                <td class="bg-gray">4.0 </td>
+                <td class="bg-gray">3.5 </td>
+                <td class="bg-gray">3.0 </td>
+                <td class="bg-gray">3.8 </td>
+                <td class="bg-gray">3.8 </td>
+                <td class="bg-gray">3.0 </td>
+              </tr>
+              <tr>
+                <td colspan="2" class="text-left bold-text bg-gray">
+                  PUNTAJE ESCALA DE CADA FACTOR 
+                </td>
+                <td class="bg-gray">9.5 </td>
+                <td class="bg-gray">9.0 </td>
+                <td class="bg-gray">9.0 </td>
+                <td class="bg-gray">8.8 </td>
+                <td class="bg-gray">10.0 </td>
+                <td class="bg-gray">8.8 </td>
+                <td class="bg-gray">7.5 </td>
+                <td class="bg-gray">9.5 </td>
+                <td class="bg-gray">9.5 </td>
+                <td class="bg-gray">7.5 </td>
+              </tr>
+              <tr>
+                <td colspan="2" class="text-left bold-text bg-gray">
+                  PROMEDIO OBTENIDO POR CAPACIDAD 
+                </td>
+                <td colspan="4" class="bg-gray">9.1 </td>
+                <td colspan="3" class="bg-gray">8.8 </td>
+                <td colspan="3" class="bg-gray">8.8 </td>
+              </tr>
+            </tbody>
+          </table>
 
-        <tr class="bg-lightblue">
-            <td rowspan="10" style="font-weight:bold;">UTILIDAD</td>
-            <td rowspan="10">70</td>
-            <td rowspan="4" class="text-left">Fiabilidad</td>
-            <td class="text-left">Precisión</td>
-            <td rowspan="4">40</td>
-        </tr>
-        <tr class="bg-lightblue">
-            <td class="text-left">Completitud</td>
-        </tr>
-        <tr class="bg-lightblue">
-            <td class="text-left">Robustez</td>
-        </tr>
-        <tr class="bg-lightblue">
-            <td class="text-left">Consistencia</td>
-        </tr>
-        <tr class="bg-lightblue">
-            <td rowspan="3" class="text-left">Eficiencia</td>
-            <td class="text-left">Responsabilidad</td>
-            <td rowspan="3">15</td>
-        </tr>
-        <tr class="bg-lightblue">
-            <td class="text-left">Eficiencia de dispositivos</td>
-        </tr>
-        <tr class="bg-lightblue">
-            <td class="text-left">Accesibilidad</td>
-        </tr>
-        <tr class="bg-lightblue">
-            <td rowspan="3" class="text-left">Interactividad</td>
-            <td class="text-left">Robustez</td>
-            <td rowspan="3">15</td>
-        </tr>
-        <tr class="bg-lightblue">
-            <td class="text-left">Accesibilidad</td>
-        </tr>
-        <tr class="bg-lightblue">
-            <td class="text-left">Capacidad de comunicación</td>
-        </tr>
+          <h3 style="font-family: 'Nunito', sans-serif; color: var(--primary); font-size: 18px; margin-bottom: 20px;">Resultados de la evaluación </h3>
+          <table class="tabla-moderna tabla-resultado">
+            <thead>
+              <tr>
+                <th class="bg-yellow">CAPACIDAD </th>
+                <th class="bg-yellow">PUNTAJE<br />GLOBAL </th>
+                <th class="bg-yellow">FACTOR </th>
+                <th class="bg-yellow">PUNTAJE<br />FACTOR </th>
+                <th class="bg-yellow">PUNTAJE<br />OBTENIDO </th>
+                <th class="bg-yellow">PUNTAJE<br />CAPACIDAD </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="bg-peach">
+                <td rowspan="4" class="bold-text">OPERACIÓN </td>
+                <td rowspan="4">40 </td>
+                <td class="text-left">Corrección </td>
+                <td>10 </td>
+                <td class="bg-white">9.5 </td>
+                <td rowspan="4" class="bg-white">36.3 </td>
+              </tr>
+              <tr class="bg-peach">
+                <td class="text-left">Confiabilidad </td>
+                <td>10 </td>
+                <td class="bg-white">9.0 </td>
+              </tr>
+              <tr class="bg-peach">
+                <td class="text-left">Usabilidad </td>
+                <td>10 </td>
+                <td class="bg-white">9.0 </td>
+              </tr>
+              <tr class="bg-peach">
+                <td class="text-left">Integridad o Seguridad </td>
+                <td>10 </td>
+                <td class="bg-white">8.8 </td>
+              </tr>
 
-        <tr class="bg-lightyellow">
-            <td rowspan="6" style="font-weight:bold;">MANTENIBILIDAD</td>
-            <td rowspan="6">20</td>
-            <td rowspan="2" class="text-left">Facilidad de Prueba</td>
-            <td class="text-left">Auto descripción</td>
-            <td rowspan="2">5</td>
-        </tr>
-        <tr class="bg-lightyellow">
-            <td class="text-left">Estructuración</td>
-        </tr>
-        <tr class="bg-lightyellow">
-            <td rowspan="2" class="text-left">Facilidad de<br>Entendimiento</td>
-            <td class="text-left">Concisión</td>
-            <td rowspan="2">10</td>
-        </tr>
-        <tr class="bg-lightyellow">
-            <td class="text-left">Legibilidad</td>
-        </tr>
-        <tr class="bg-lightyellow">
-            <td rowspan="2" class="text-left">Modificabilidad</td>
-            <td class="text-left">Estructuración</td>
-            <td rowspan="2">5</td>
-        </tr>
-        <tr class="bg-lightyellow">
-            <td class="text-left">Escalabilidad</td>
-        </tr>
+              <tr class="bg-blue">
+                <td rowspan="3" class="bold-text">TRANSICIÓN </td>
+                <td rowspan="3">30 </td>
+                <td class="text-left">Portabilidad </td>
+                <td>10 </td>
+                <td class="bg-white">10.0 </td>
+                <td rowspan="3" class="bg-white">26.3 </td>
+              </tr>
+              <tr class="bg-blue">
+                <td class="text-left">Reusabilidad </td>
+                <td>10 </td>
+                <td class="bg-white">8.8 </td>
+              </tr>
+              <tr class="bg-blue">
+                <td class="text-left">Interoperabilidad </td>
+                <td>10 </td>
+                <td class="bg-white">7.5 </td>
+              </tr>
 
-        <tr>
-            <td class="footer-grey" colspan="2">Puntaje Total</td>
-            <td class="footer-grey">100</td>
-            <td colspan="2" class="footer-black"></td>
-            <td class="footer-grey">100</td>
-        </tr>
-    </tbody>
-</table>
+              <tr class="bg-lightyellow">
+                <td rowspan="3" class="bold-text">REVISIÓN </td>
+                <td rowspan="3">30 </td>
+                <td class="text-left">Facilidad Mantenimiento </td>
+                <td>10 </td>
+                <td class="bg-white">9.5 </td>
+                <td rowspan="3" class="bg-white">26.5 </td>
+              </tr>
+              <tr class="bg-lightyellow">
+                <td class="text-left">Flexibilidad </td>
+                <td>10 </td>
+                <td class="bg-white">9.5 </td>
+              </tr>
+              <tr class="bg-lightyellow">
+                <td class="text-left">Facilidad de Prueba </td>
+                <td>10 </td>
+                <td class="bg-white">7.5 </td>
+              </tr>
 
-<table class="tabla-caracteristicas">
-    <thead>
-        <tr>
-            <th class="bg-darkblue" style="border-bottom: none;"></th>
-            <th colspan="3">CARACTERÍSTICAS</th>
-            <th rowspan="2">PREGUNTAS</th>
-            <th rowspan="2">PUNTAJE<br>ESPERADO</th>
-            <th rowspan="2">PUNTAJE<br>OBTENIDO</th>
-        </tr>
-        <tr>
-            <th class="bg-darkblue" style="border-top: none;"></th>
-            <th>ALTO NIVEL</th>
-            <th>NIVEL<br>INTERMEDIO</th>
-            <th>PRIMITIVAS</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr class="bg-peach">
-            <td rowspan="18" class="bg-darkblue"><div class="vertical-text">UTILIDAD GENERAL</div></td>
-            <td rowspan="2" style="font-weight:bold;">PORTABILIDAD</td>
-            <td rowspan="2"></td>
-            <td class="text-left">Independencia de Dispositivos</td>
-            <td></td><td></td><td></td>
-        </tr>
-        <tr class="bg-peach">
-            <td class="text-left">Auto-contención</td>
-            <td></td><td></td><td></td>
-        </tr>
+              <tr>
+                <td class="footer-gris">Puntaje Total </td>
+                <td class="footer-gris">100 </td>
+                <td class="footer-negro"></td>
+                <td class="footer-gris">100 </td>
+                <td class="footer-gris">89.1 </td>
+                <td class="footer-gris">89.1 </td>
+              </tr>
+            </tbody>
+          </table>
 
-        <tr class="bg-lightblue">
-            <td rowspan="10" style="font-weight:bold;">UTILIDAD</td>
-            <td rowspan="4" class="text-left">Fiabilidad</td>
-            <td class="text-left">Precisión</td>
-            <td></td><td></td><td></td>
-        </tr>
-        <tr class="bg-lightblue">
-            <td class="text-left">Completitud</td>
-            <td></td><td></td><td></td>
-        </tr>
-        <tr class="bg-lightblue">
-            <td class="text-left">Robustez</td>
-            <td></td><td></td><td></td>
-        </tr>
-        <tr class="bg-lightblue">
-            <td class="text-left">Consistencia</td>
-            <td></td><td></td><td></td>
-        </tr>
-        <tr class="bg-lightblue">
-            <td rowspan="3" class="text-left">Eficiencia</td>
-            <td class="text-left">Responsabilidad</td>
-            <td></td><td></td><td></td>
-        </tr>
-        <tr class="bg-lightblue">
-            <td class="text-left">Eficiencia de dispositivos</td>
-            <td></td><td></td><td></td>
-        </tr>
-        <tr class="bg-lightblue">
-            <td class="text-left">Accesibilidad</td>
-            <td></td><td></td><td></td>
-        </tr>
-        <tr class="bg-lightblue">
-            <td rowspan="3" class="text-left">Interactividad</td>
-            <td class="text-left">Robustez</td>
-            <td></td><td></td><td></td>
-        </tr>
-        <tr class="bg-lightblue">
-            <td class="text-left">Accesibilidad</td>
-            <td></td><td></td><td></td>
-        </tr>
-        <tr class="bg-lightblue">
-            <td class="text-left">Capacidad de comunicación</td>
-            <td></td><td></td><td></td>
-        </tr>
+          <div style="margin-top: 30px; padding: 25px; background: linear-gradient(135deg, rgba(244, 63, 94, 0.05), rgba(244, 63, 94, 0.02)); border-radius: 16px; border-left: 5px solid var(--primary);">
+              <h3 style="font-family: 'Nunito', sans-serif; color: var(--primary); margin-top: 0; font-size: 20px;">Interpretación de resultados </h3>
+              <p class="descripcion" style="margin-bottom: 12px; color: var(--text-dark);">
+                  La evaluación realizada al software YouTube mediante el modelo de calidad McCall arrojó un puntaje total de 89.1 sobre 100 , lo cual indica que la plataforma posee un alto nivel de calidad en términos generales.
+              </p>
+              <p class="descripcion" style="margin-bottom: 12px; color: var(--text-dark);">
+                  En la capacidad de operación , se obtuvo un puntaje de 36.3 sobre 40 , evidenciando un desempeño sobresaliente en aspectos como la corrección, confiabilidad y usabilidad. Esto demuestra que el sistema cumple adecuadamente con sus funciones principales y ofrece una experiencia de usuario eficiente y fácil de utilizar.
+              </p>
+              <p class="descripcion" style="margin-bottom: 12px; color: var(--text-dark);">
+                  En la capacidad de transición , se alcanzó un valor de 26.3 sobre 30 , lo que indica que la plataforma presenta una buena adaptabilidad a diferentes entornos, destacándose especialmente en la portabilidad. Sin embargo, el factor de interoperabilidad presenta un puntaje menor en comparación con los demás, lo que sugiere ciertas limitaciones en la integración con otros sistemas.
+              </p>
+              <p class="descripcion" style="margin-bottom: 12px; color: var(--text-dark);">
+                  Por otra parte, en la capacidad de revisión , se obtuvo un puntaje de 26.5 sobre 30 , reflejando que el sistema cuenta con una estructura flexible y con buena capacidad de mantenimiento. No obstante, la facilidad de prueba presenta un valor inferior, lo cual puede indicar cierta complejidad en la validación o control de algunos procesos internos.
+              </p>
+              <p class="descripcion" style="margin-bottom: 0; color: var(--text-dark);">
+                  En términos generales, los resultados evidencian que YouTube es una plataforma robusta, eficiente y bien estructurada, aunque con oportunidades de mejora en aspectos específicos como la interoperabilidad, seguridad y facilidad de prueba.
+              </p>
+          </div>
+        </div>
 
-        <tr class="bg-lightyellow">
-            <td rowspan="6" style="font-weight:bold;">MANTENIBILIDAD</td>
-            <td rowspan="2" class="text-left">Facilidad de Prueba</td>
-            <td class="text-left">Auto descripción</td>
-            <td></td><td></td><td></td>
-        </tr>
-        <tr class="bg-lightyellow">
-            <td class="text-left">Estructuración</td>
-            <td></td><td></td><td></td>
-        </tr>
-        <tr class="bg-lightyellow">
-            <td rowspan="2" class="text-left">Facilidad de<br>Entendimiento</td>
-            <td class="text-left">Concisión</td>
-            <td></td><td></td><td></td>
-        </tr>
-        <tr class="bg-lightyellow">
-            <td class="text-left">Legibilidad</td>
-            <td></td><td></td><td></td>
-        </tr>
-        <tr class="bg-lightyellow">
-            <td rowspan="2" class="text-left">Modificabilidad</td>
-            <td class="text-left">Estructuración</td>
-            <td></td><td></td><td></td>
-        </tr>
-        <tr class="bg-lightyellow">
-            <td class="text-left">Escalabilidad</td>
-            <td></td><td></td><td></td>
-        </tr>
-    </tbody>
-</table>
+        <div id="boehm" class="info-card animate-slide-up hover-float">
+          <div class="card-header">
+            <span class="number-badge">07</span>
+            <h2>Modelo Boehm - Características</h2>
+          </div>
+          
+          <h3 style="font-family: 'Nunito', sans-serif; color: var(--primary); font-size: 18px; margin-bottom: 10px;">APLICACIÓN DEL MODELO DE LA CALIDAD BOEHM </h3>
+          <p class="descripcion" style="margin-bottom: 10px;">
+            Presentado por Barry Boehm en 1978, introduce características de alto nivel, características de nivel intermedio y características primitivas, cada una de las cuales contribuye al nivel general de calidad.
+          </p>
+          <p class="descripcion" style="margin-bottom: 25px;">
+            Para la evaluación, se asigna la siguiente tabla de puntuación teniendo en cuenta los niveles de cada característica 
+          </p>
 
-<table class="tabla-caracteristicas">
-    <thead>
-        <tr>
-            <th class="bg-darkblue" style="border-bottom: none;"></th>
-            <th colspan="3">CARACTERÍSTICAS</th>
-            <th rowspan="2">PUNTAJE<br>ESPERADO</th>
-            <th rowspan="2">PUNTAJE<br>OBTENIDO</th>
-            <th rowspan="2">PROMEDIO<br>NIVEL</th>
-            <th rowspan="2">PUNTAJE<br>NIVEL</th>
-            <th rowspan="2">PROMEDIO<br>TOTAL</th>
-        </tr>
-        <tr>
-            <th class="bg-darkblue" style="border-top: none;"></th>
-            <th>ALTO<br>NIVEL</th>
-            <th>NIVEL<br>INTERMEDIO</th>
-            <th>PRIMITIVAS</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr class="bg-peach">
-            <td rowspan="18" class="bg-darkblue"><div class="vertical-text">UTILIDAD GENERAL</div></td>
-            <td rowspan="2"><div class="vertical-text" style="font-weight:bold;">PORTABILIDAD</div></td>
-            <td rowspan="2"></td>
-            <td class="text-left">Independencia de Dispositivos</td>
-            <td></td><td></td>
-            <td rowspan="2"></td><td rowspan="2"></td><td rowspan="2"></td>
-        </tr>
-        <tr class="bg-peach">
-            <td class="text-left">Auto-contención</td>
-            <td></td><td></td>
-        </tr>
+          <table
+            class="tabla-moderna tabla-caracteristicas"
+            style="margin-bottom: 30px"
+          >
+            <thead>
+              <tr>
+                <th class="bg-darkblue" style="border: none"></th>
+                <th class="bg-yellow">CARACTERÍSTICAS DE<br />ALTO NIVEL </th>
+                <th class="bg-yellow">PUNTAJE </th>
+                <th class="bg-yellow">
+                  CARACTERÍSTICAS DE<br />NIVEL INTERMEDIO 
+                </th>
+                <th class="bg-yellow">CARACTERÍSTICAS<br />PRIMITIVAS </th>
+                <th class="bg-yellow">PUNTAJE </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="bg-peach">
+                <td rowspan="18" class="bg-darkblue">
+                  <div class="vertical-text">UTILIDAD GENERAL </div>
+                </td>
+                <td rowspan="2" class="bold-text">PORTABILIDAD </td>
+                <td rowspan="2">10 </td>
+                <td rowspan="2"></td>
+                <td class="text-left">Independencia de Dispositivos </td>
+                <td>5 </td>
+              </tr>
+              <tr class="bg-peach">
+                <td class="text-left">Auto-contención </td>
+                <td>5 </td>
+              </tr>
 
-        <tr class="bg-lightblue">
-            <td rowspan="10"><div class="vertical-text" style="font-weight:bold;">UTILIDAD</div></td>
-            <td rowspan="4" class="text-left">Fiabilidad</td>
-            <td class="text-left">Precisión</td>
-            <td></td><td></td>
-            <td rowspan="4"></td><td rowspan="4"></td>
-            <td rowspan="10"></td>
-        </tr>
-        <tr class="bg-lightblue">
-            <td class="text-left">Completitud</td>
-            <td></td><td></td>
-        </tr>
-        <tr class="bg-lightblue">
-            <td class="text-left">Robustez</td>
-            <td></td><td></td>
-        </tr>
-        <tr class="bg-lightblue">
-            <td class="text-left">Consistencia</td>
-            <td></td><td></td>
-        </tr>
-        <tr class="bg-lightblue">
-            <td rowspan="3" class="text-left">Eficiencia</td>
-            <td class="text-left">Responsabilidad</td>
-            <td></td><td></td>
-            <td rowspan="3"></td><td rowspan="3"></td>
-        </tr>
-        <tr class="bg-lightblue">
-            <td class="text-left">Eficiencia de dispositivos</td>
-            <td></td><td></td>
-        </tr>
-        <tr class="bg-lightblue">
-            <td class="text-left">Accesibilidad</td>
-            <td></td><td></td>
-        </tr>
-        <tr class="bg-lightblue">
-            <td rowspan="3" class="text-left">Interactividad</td>
-            <td class="text-left">Robustez</td>
-            <td></td><td></td>
-            <td rowspan="3"></td><td rowspan="3"></td>
-        </tr>
-        <tr class="bg-lightblue">
-            <td class="text-left">Accesibilidad</td>
-            <td></td><td></td>
-        </tr>
-        <tr class="bg-lightblue">
-            <td class="text-left">Capacidad de comunicación</td>
-            <td></td><td></td>
-        </tr>
+              <tr class="bg-blue">
+                <td rowspan="10" class="bold-text">UTILIDAD </td>
+                <td rowspan="10">70 </td>
+                <td rowspan="4" class="text-left">Fiabilidad </td>
+                <td class="text-left">Precisión </td>
+                <td rowspan="4">40 </td>
+              </tr>
+              <tr class="bg-blue">
+                <td class="text-left">Completitud </td>
+              </tr>
+              <tr class="bg-blue">
+                <td class="text-left">Robustez </td>
+              </tr>
+              <tr class="bg-blue">
+                <td class="text-left">Consistencia </td>
+              </tr>
+              <tr class="bg-blue">
+                <td rowspan="3" class="text-left">Eficiencia </td>
+                <td class="text-left">Responsabilidad </td>
+                <td rowspan="3">15 </td>
+              </tr>
+              <tr class="bg-blue">
+                <td class="text-left">Eficiencia de dispositivos </td>
+              </tr>
+              <tr class="bg-blue">
+                <td class="text-left">Accesibilidad </td>
+              </tr>
+              <tr class="bg-blue">
+                <td rowspan="3" class="text-left">Interactividad </td>
+                <td class="text-left">Robustez </td>
+                <td rowspan="3">15 </td>
+              </tr>
+              <tr class="bg-blue">
+                <td class="text-left">Accesibilidad </td>
+              </tr>
+              <tr class="bg-blue">
+                <td class="text-left">Capacidad de comunicación </td>
+              </tr>
 
-        <tr class="bg-lightyellow">
-            <td rowspan="6"><div class="vertical-text" style="font-weight:bold;">MANTENIBILIDAD</div></td>
-            <td rowspan="2" class="text-left">Facilidad de Prueba</td>
-            <td class="text-left">Auto descripción</td>
-            <td></td><td></td>
-            <td rowspan="2"></td><td rowspan="2"></td>
-            <td rowspan="6"></td>
-        </tr>
-        <tr class="bg-lightyellow">
-            <td class="text-left">Estructuración</td>
-            <td></td><td></td>
-        </tr>
-        <tr class="bg-lightyellow">
-            <td rowspan="2" class="text-left">Facilidad de<br>Entendimiento</td>
-            <td class="text-left">Concisión</td>
-            <td></td><td></td>
-            <td rowspan="2"></td><td rowspan="2"></td>
-        </tr>
-        <tr class="bg-lightyellow">
-            <td class="text-left">Legibilidad</td>
-            <td></td><td></td>
-        </tr>
-        <tr class="bg-lightyellow">
-            <td rowspan="2" class="text-left">Modificabilidad</td>
-            <td class="text-left">Estructuración</td>
-            <td></td><td></td>
-            <td rowspan="2"></td><td rowspan="2"></td>
-        </tr>
-        <tr class="bg-lightyellow">
-            <td class="text-left">Escalabilidad</td>
-            <td></td><td></td>
-        </tr>
-    </tbody>
-</table>
+              <tr class="bg-lightyellow">
+                <td rowspan="6" class="bold-text">MANTENIBILIDAD </td>
+                <td rowspan="6">20 </td>
+                <td rowspan="2" class="text-left">Facilidad de Prueba </td>
+                <td class="text-left">Auto descripción </td>
+                <td rowspan="2">5 </td>
+              </tr>
+              <tr class="bg-lightyellow">
+                <td class="text-left">Estructuración </td>
+              </tr>
+              <tr class="bg-lightyellow">
+                <td rowspan="2" class="text-left">
+                  Facilidad de<br />Entendimiento 
+                </td>
+                <td class="text-left">Concisión </td>
+                <td rowspan="2">10 </td>
+              </tr>
+              <tr class="bg-lightyellow">
+                <td class="text-left">Legibilidad </td>
+              </tr>
+              <tr class="bg-lightyellow">
+                <td rowspan="2" class="text-left">Modificabilidad </td>
+                <td class="text-left">Estructuración </td>
+                <td rowspan="2">5 </td>
+              </tr>
+              <tr class="bg-lightyellow">
+                <td class="text-left">Escalabilidad </td>
+              </tr>
+              <tr>
+                <td class="footer-gris" colspan="2">Puntaje Total </td>
+                <td class="footer-gris">100 </td>
+                <td colspan="2" class="footer-negro"></td>
+                <td class="footer-gris">100 </td>
+              </tr>
+            </tbody>
+          </table>
 
-<table class="tabla-caracteristicas">
-    <thead>
-        <tr>
-            <th class="bg-darkblue" style="border-bottom: none;"></th>
-            <th colspan="3">CARACTERÍSTICAS</th>
-            <th rowspan="2">PUNTAJE<br>OBTENIDO</th>
-            <th rowspan="2">PUNTAJE<br>ESCALA</th>
-            <th rowspan="2">TOTAL<br>NIVEL</th>
-            <th rowspan="2">PUNTAJE<br>NIVEL</th>
-            <th rowspan="2">TOTAL<br>EVALUACIÓN</th>
-        </tr>
-        <tr>
-            <th class="bg-darkblue" style="border-top: none;"></th>
-            <th>ALTO<br>NIVEL</th>
-            <th>NIVEL<br>INTERMEDIO</th>
-            <th>PRIMITIVAS</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr class="bg-peach">
-            <td rowspan="18" class="bg-darkblue"><div class="vertical-text">UTILIDAD GENERAL</div></td>
-            <td rowspan="2"><div class="vertical-text" style="font-weight:bold;">PORTABILIDAD</div></td>
-            <td rowspan="2"></td>
-            <td class="text-left">Independencia de Dispositivos</td>
-            <td></td><td></td>
-            <td rowspan="2"></td><td rowspan="2"></td>
-            <td rowspan="18"></td> </tr>
-        <tr class="bg-peach">
-            <td class="text-left">Auto-contención</td>
-            <td></td><td></td>
-        </tr>
+          <h3 style="font-family: 'Nunito', sans-serif; color: var(--primary); font-size: 18px; margin-bottom: 20px;">Descripción de las características primitivas y cuestionario </h3>
+          <table
+            class="tabla-moderna tabla-caracteristicas"
+            style="margin-bottom: 30px"
+          >
+            <thead>
+              <tr>
+                <th class="bg-darkblue" style="border-bottom: none"></th>
+                <th colspan="3" class="bg-yellow">CARACTERÍSTICAS </th>
+                <th rowspan="2" class="bg-yellow">PREGUNTAS </th>
+                <th rowspan="2" class="bg-yellow">PUNTAJE<br />ESPERADO </th>
+                <th rowspan="2" class="bg-yellow">PUNTAJE<br />OBTENIDO </th>
+              </tr>
+              <tr>
+                <th class="bg-darkblue" style="border-top: none"></th>
+                <th class="bg-yellow">ALTO NIVEL </th>
+                <th class="bg-yellow">NIVEL<br />INTERMEDIO </th>
+                <th class="bg-yellow">PRIMITIVAS </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="bg-peach">
+                <td rowspan="18" class="bg-darkblue">
+                  <div class="vertical-text">UTILIDAD GENERAL </div>
+                </td>
+                <td rowspan="2" class="bold-text">PORTABILIDAD </td>
+                <td rowspan="2"></td>
+                <td class="text-left">Independencia de Dispositivos </td>
+                <td class="bg-white">¿YouTube funciona en cualquier dispositivo? </td>
+                <td class="bg-white">Excelente </td>
+                <td class="bg-white">Excelente </td>
+              </tr>
+              <tr class="bg-peach">
+                <td class="text-left">Auto-contención </td>
+                <td class="bg-white">¿Se puede usar sin conexión? </td>
+                <td class="bg-white">Bueno </td>
+                <td class="bg-white">Bueno </td>
+              </tr>
+              <tr class="bg-blue">
+                <td rowspan="10" class="bold-text">UTILIDAD </td>
+                <td rowspan="4" class="text-left">Fiabilidad </td>
+                <td class="text-left">Precisión </td>
+                <td class="bg-white">¿Los videos se reproducen correctamente? </td>
+                <td class="bg-white">Excelente </td>
+                <td class="bg-white">Bueno </td>
+              </tr>
+              <tr class="bg-blue">
+                <td class="text-left">Completitud </td>
+                <td class="bg-white">¿Cumple con todas sus funciones principales? </td>
+                <td class="bg-white">Excelente </td>
+                <td class="bg-white">Excelente </td>
+              </tr>
+              <tr class="bg-blue">
+                <td class="text-left">Robustez </td>
+                <td class="bg-white">¿Funciona sin fallos frecuentes? </td>
+                <td class="bg-white">Bueno </td>
+                <td class="bg-white">Bueno </td>
+              </tr>
+              <tr class="bg-blue">
+                <td class="text-left">Consistencia </td>
+                <td class="bg-white">¿Mantiene comportamiento uniforme? </td>
+                <td class="bg-white">Bueno </td>
+                <td class="bg-white">Bueno </td>
+              </tr>
+              <tr class="bg-blue">
+                <td rowspan="3" class="text-left">Eficiencia </td>
+                <td class="text-left">Responsabilidad </td>
+                <td class="bg-white">¿Responde rápido a las acciones? </td>
+                <td class="bg-white">Excelente </td>
+                <td class="bg-white">Excelente </td>
+              </tr>
+              <tr class="bg-blue">
+                <td class="text-left">Eficiencia de dispositivos </td>
+                <td class="bg-white">¿Funciona bien en distintos equipos? </td>
+                <td class="bg-white">Excelente </td>
+                <td class="bg-white">Excelente </td>
+              </tr>
+              <tr class="bg-blue">
+                <td class="text-left">Accesibilidad </td>
+                <td class="bg-white">¿Es fácil acceder al contenido? </td>
+                <td class="bg-white">Excelente </td>
+                <td class="bg-white">Bueno </td>
+              </tr>
+              <tr class="bg-blue">
+                <td rowspan="3" class="text-left">Interactividad </td>
+                <td class="text-left">Robustez </td>
+                <td class="bg-white">¿Tiene interfaz amigable? </td>
+                <td class="bg-white">Bueno </td>
+                <td class="bg-white">Excelente </td>
+              </tr>
+              <tr class="bg-blue">
+                <td class="text-left">Accesibilidad </td>
+                <td class="bg-white">¿Es accesible para todos los usuarios? </td>
+                <td class="bg-white">Bueno </td>
+                <td class="bg-white">Regular </td>
+              </tr>
+              <tr class="bg-blue">
+                <td class="text-left">Capacidad de comunicación </td>
+                <td class="bg-white">¿Permite interacción (comentarios, likes)? </td>
+                <td class="bg-white">Bueno </td>
+                <td class="bg-white">Excelente </td>
+              </tr>
+              <tr class="bg-lightyellow">
+                <td rowspan="6" class="bold-text">MANTENIBILIDAD </td>
+                <td rowspan="2" class="text-left">Facilidad de Prueba </td>
+                <td class="text-left">Auto descripción </td>
+                <td class="bg-white">¿Tiene ayudas o guías de uso? </td>
+                <td class="bg-white">Bueno </td>
+                <td class="bg-white">Bueno </td>
+              </tr>
+              <tr class="bg-lightyellow">
+                <td class="text-left">Estructuración </td>
+                <td class="bg-white">¿Está organizado el sistema? </td>
+                <td class="bg-white">Bueno </td>
+                <td class="bg-white">Excelente </td>
+              </tr>
+              <tr class="bg-lightyellow">
+                <td rowspan="2" class="text-left">
+                  Facilidad de<br />Entendimiento 
+                </td>
+                <td class="text-left">Concisión </td>
+                <td class="bg-white">¿Es fácil comprender su uso? </td>
+                <td class="bg-white">Excelente </td>
+                <td class="bg-white">Excelente </td>
+              </tr>
+              <tr class="bg-lightyellow">
+                <td class="text-left">Legibilidad </td>
+                <td class="bg-white">¿La interfaz es clara? </td>
+                <td class="bg-white">Excelente </td>
+                <td class="bg-white">Excelente </td>
+              </tr>
+              <tr class="bg-lightyellow">
+                <td rowspan="2" class="text-left">Modificabilidad </td>
+                <td class="text-left">Estructuración </td>
+                <td class="bg-white">¿Permite cambios o adaptación? </td>
+                <td class="bg-white">Bueno </td>
+                <td class="bg-white">Bueno </td>
+              </tr>
+              <tr class="bg-lightyellow">
+                <td class="text-left">Escalabilidad </td>
+                <td class="bg-white">¿Soporta crecimiento? </td>
+                <td class="bg-white">Bueno </td>
+                <td class="bg-white">Excelente </td>
+              </tr>
+            </tbody>
+          </table>
 
-        <tr class="bg-lightblue">
-            <td rowspan="10"><div class="vertical-text" style="font-weight:bold;">UTILIDAD</div></td>
-            <td rowspan="4" class="text-left">Fiabilidad</td>
-            <td class="text-left">Precisión</td>
-            <td></td><td></td>
-            <td rowspan="4"></td><td rowspan="4"></td>
-        </tr>
-        <tr class="bg-lightblue">
-            <td class="text-left">Completitud</td>
-            <td></td><td></td>
-        </tr>
-        <tr class="bg-lightblue">
-            <td class="text-left">Robustez</td>
-            <td></td><td></td>
-        </tr>
-        <tr class="bg-lightblue">
-            <td class="text-left">Consistencia</td>
-            <td></td><td></td>
-        </tr>
-        <tr class="bg-lightblue">
-            <td rowspan="3" class="text-left">Eficiencia</td>
-            <td class="text-left">Responsabilidad</td>
-            <td></td><td></td>
-            <td rowspan="3"></td><td rowspan="3"></td>
-        </tr>
-        <tr class="bg-lightblue">
-            <td class="text-left">Eficiencia de dispositivos</td>
-            <td></td><td></td>
-        </tr>
-        <tr class="bg-lightblue">
-            <td class="text-left">Accesibilidad</td>
-            <td></td><td></td>
-        </tr>
-        <tr class="bg-lightblue">
-            <td rowspan="3" class="text-left">Interactividad</td>
-            <td class="text-left">Robustez</td>
-            <td></td><td></td>
-            <td rowspan="3"></td><td rowspan="3"></td>
-        </tr>
-        <tr class="bg-lightblue">
-            <td class="text-left">Accesibilidad</td>
-            <td></td><td></td>
-        </tr>
-        <tr class="bg-lightblue">
-            <td class="text-left">Capacidad de comunicación</td>
-            <td></td><td></td>
-        </tr>
+          <h3 style="font-family: 'Nunito', sans-serif; color: var(--primary); font-size: 18px; margin-bottom: 20px;">Puntuación Obtenida </h3>
+          <table class="tabla-moderna tabla-caracteristicas" style="margin-bottom: 30px">
+            <thead>
+              <tr>
+                <th class="bg-darkblue" style="border-bottom: none"></th>
+                <th colspan="3" class="bg-yellow">CARACTERÍSTICAS </th>
+                <th rowspan="2" class="bg-yellow">PUNTAJE<br />ESPERADO </th>
+                <th rowspan="2" class="bg-yellow">PUNTAJE<br />OBTENIDO </th>
+                <th rowspan="2" class="bg-yellow">PROMEDIO<br />NIVEL </th>
+                <th rowspan="2" class="bg-yellow">PUNTAJE<br />NIVEL </th>
+                <th rowspan="2" class="bg-yellow">PROMEDIO<br />TOTAL </th>
+              </tr>
+              <tr>
+                <th class="bg-darkblue" style="border-top: none"></th>
+                <th class="bg-yellow">ALTO<br />NIVEL </th>
+                <th class="bg-yellow">NIVEL<br />INTERMEDIO </th>
+                <th class="bg-yellow">PRIMITIVAS </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="bg-peach">
+                <td rowspan="18" class="bg-darkblue">
+                  <div class="vertical-text">UTILIDAD GENERAL </div>
+                </td>
+                <td rowspan="2">
+                  <div class="vertical-text bold-text">PORTABILIDAD </div>
+                </td>
+                <td rowspan="2"></td>
+                <td class="text-left">Independencia de Dispositivos </td>
+                <td class="bg-white">4 </td>
+                <td class="bg-white">4 </td>
+                <td rowspan="2" class="bg-white">3.5 </td>
+                <td rowspan="2" class="bg-white">8.75 </td>
+                <td rowspan="18" class="bg-white">8.8 </td>
+              </tr>
+              <tr class="bg-peach">
+                <td class="text-left">Auto-contención </td>
+                <td class="bg-white">3 </td>
+                <td class="bg-white">3 </td>
+              </tr>
+              <tr class="bg-blue">
+                <td rowspan="10">
+                  <div class="vertical-text bold-text">UTILIDAD </div>
+                </td>
+                <td rowspan="4" class="text-left">Fiabilidad </td>
+                <td class="text-left">Precisión </td>
+                <td class="bg-white">4 </td>
+                <td class="bg-white">3 </td>
+                <td rowspan="4" class="bg-white">3.25 </td>
+                <td rowspan="4" class="bg-white">8.125 </td>
+              </tr>
+              <tr class="bg-blue">
+                <td class="text-left">Completitud </td>
+                <td class="bg-white">4 </td>
+                <td class="bg-white">4 </td>
+              </tr>
+              <tr class="bg-blue">
+                <td class="text-left">Robustez </td>
+                <td class="bg-white">3 </td>
+                <td class="bg-white">3 </td>
+              </tr>
+              <tr class="bg-blue">
+                <td class="text-left">Consistencia </td>
+                <td class="bg-white">3 </td>
+                <td class="bg-white">3 </td>
+              </tr>
+              <tr class="bg-blue">
+                <td rowspan="3" class="text-left">Eficiencia </td>
+                <td class="text-left">Responsabilidad </td>
+                <td class="bg-white">4 </td>
+                <td class="bg-white">4 </td>
+                <td rowspan="3" class="bg-white">3.66 </td>
+                <td rowspan="3" class="bg-white">9.15 </td>
+              </tr>
+              <tr class="bg-blue">
+                <td class="text-left">Eficiencia de dispositivos </td>
+                <td class="bg-white">4 </td>
+                <td class="bg-white">4 </td>
+              </tr>
+              <tr class="bg-blue">
+                <td class="text-left">Accesibilidad </td>
+                <td class="bg-white">4 </td>
+                <td class="bg-white">3 </td>
+              </tr>
+              <tr class="bg-blue">
+                <td rowspan="3" class="text-left">Interactividad </td>
+                <td class="text-left">Robustez </td>
+                <td class="bg-white">3 </td>
+                <td class="bg-white">4 </td>
+                <td rowspan="3" class="bg-white">3.33 </td>
+                <td rowspan="3" class="bg-white">8,325 </td>
+              </tr>
+              <tr class="bg-blue">
+                <td class="text-left">Accesibilidad </td>
+                <td class="bg-white">3 </td>
+                <td class="bg-white">2 </td>
+              </tr>
+              <tr class="bg-blue">
+                <td class="text-left">Capacidad de comunicación </td>
+                <td class="bg-white">3 </td>
+                <td class="bg-white">4 </td>
+              </tr>
+              <tr class="bg-lightyellow">
+                <td rowspan="6">
+                  <div class="vertical-text bold-text">MANTENIBILIDAD </div>
+                </td>
+                <td rowspan="2" class="text-left">Facilidad de Prueba </td>
+                <td class="text-left">Auto descripción </td>
+                <td class="bg-white">3 </td>
+                <td class="bg-white">3 </td>
+                <td rowspan="2" class="bg-white">3.5 </td>
+                <td rowspan="2" class="bg-white">8.75 </td>
+              </tr>
+              <tr class="bg-lightyellow">
+                <td class="text-left">Estructuración </td>
+                <td class="bg-white">3 </td>
+                <td class="bg-white">4 </td>
+              </tr>
+              <tr class="bg-lightyellow">
+                <td rowspan="2" class="text-left">
+                  Facilidad de<br />Entendimiento 
+                </td>
+                <td class="text-left">Concisión </td>
+                <td class="bg-white">4 </td>
+                <td class="bg-white">4 </td>
+                <td rowspan="2" class="bg-white">4 </td>
+                <td rowspan="2" class="bg-white">10 </td>
+              </tr>
+              <tr class="bg-lightyellow">
+                <td class="text-left">Legibilidad </td>
+                <td class="bg-white">4 </td>
+                <td class="bg-white">4 </td>
+              </tr>
+              <tr class="bg-lightyellow">
+                <td rowspan="2" class="text-left">Modificabilidad </td>
+                <td class="text-left">Estructuración </td>
+                <td class="bg-white">3 </td>
+                <td class="bg-white">3 </td>
+                <td rowspan="2" class="bg-white">3.5 </td>
+                <td rowspan="2" class="bg-white">8.75 </td>
+              </tr>
+              <tr class="bg-lightyellow">
+                <td class="text-left">Escalabilidad </td>
+                <td class="bg-white">3 </td>
+                <td class="bg-white">4 </td>
+              </tr>
+            </tbody>
+          </table>
 
-        <tr class="bg-lightyellow">
-            <td rowspan="6"><div class="vertical-text" style="font-weight:bold;">MANTENIBILIDAD</div></td>
-            <td rowspan="2" class="text-left">Facilidad de Prueba</td>
-            <td class="text-left">Auto descripción</td>
-            <td></td><td></td>
-            <td rowspan="2"></td><td rowspan="2"></td>
-        </tr>
-        <tr class="bg-lightyellow">
-            <td class="text-left">Estructuración</td>
-            <td></td><td></td>
-        </tr>
-        <tr class="bg-lightyellow">
-            <td rowspan="2" class="text-left">Facilidad de<br>Entendimiento</td>
-            <td class="text-left">Concisión</td>
-            <td></td><td></td>
-            <td rowspan="2"></td><td rowspan="2"></td>
-        </tr>
-        <tr class="bg-lightyellow">
-            <td class="text-left">Legibilidad</td>
-            <td></td><td></td>
-        </tr>
-        <tr class="bg-lightyellow">
-            <td rowspan="2" class="text-left">Modificabilidad</td>
-            <td class="text-left">Estructuración</td>
-            <td></td><td></td>
-            <td rowspan="2"></td><td rowspan="2"></td>
-        </tr>
-        <tr class="bg-lightyellow">
-            <td class="text-left">Escalabilidad</td>
-            <td></td><td></td>
-        </tr>
-    </tbody>
-</table>
+          <h3 style="font-family: 'Nunito', sans-serif; color: var(--primary); font-size: 18px; margin-bottom: 20px;">Resultados de la evaluación </h3>
+          <table class="tabla-moderna tabla-caracteristicas">
+            <thead>
+              <tr>
+                <th class="bg-darkblue" style="border-bottom: none"></th>
+                <th colspan="3" class="bg-yellow">CARACTERÍSTICAS </th>
+                <th rowspan="2" class="bg-yellow">PUNTAJE<br />OBTENIDO </th>
+                <th rowspan="2" class="bg-yellow">PUNTAJE<br />ESCALA </th>
+                <th rowspan="2" class="bg-yellow">TOTAL<br />NIVEL </th>
+                <th rowspan="2" class="bg-yellow">PUNTAJE<br />NIVEL </th>
+                <th rowspan="2" class="bg-yellow">TOTAL<br />EVALUACIÓN </th>
+              </tr>
+              <tr>
+                <th class="bg-darkblue" style="border-top: none"></th>
+                <th class="bg-yellow">ALTO<br />NIVEL </th>
+                <th class="bg-yellow">NIVEL<br />INTERMEDIO </th>
+                <th class="bg-yellow">PRIMITIVAS </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="bg-peach">
+                <td rowspan="18" class="bg-darkblue">
+                  <div class="vertical-text">UTILIDAD GENERAL </div>
+                </td>
+                <td rowspan="2">
+                  <div class="vertical-text bold-text">PORTABILIDAD </div>
+                </td>
+                <td rowspan="2"></td>
+                <td class="text-left">Independencia de Dispositivos </td>
+                <td class="bg-white">4 </td>
+                <td class="bg-white">5 </td>
+                <td rowspan="2" class="bg-white">8.75 </td>
+                <td rowspan="2" class="bg-white">8.75 </td>
+                <td rowspan="18" class="bg-white">76,26 </td>
+              </tr>
+              <tr class="bg-peach">
+                <td class="text-left">Auto-contención </td>
+                <td class="bg-white">3 </td>
+                <td class="bg-white">3.75 </td>
+              </tr>
+              <tr class="bg-blue">
+                <td rowspan="10">
+                  <div class="vertical-text bold-text">UTILIDAD </div>
+                </td>
+                <td rowspan="4" class="text-left">Fiabilidad </td>
+                <td class="text-left">Precisión </td>
+                <td class="bg-white">3 </td>
+                <td class="bg-white">7.5 </td>
+                <td rowspan="4" class="bg-white">32,5 </td>
+                <td rowspan="4" class="bg-white">58.75 </td>
+              </tr>
+              <tr class="bg-blue">
+                <td class="text-left">Completitud </td>
+                <td class="bg-white">4 </td>
+                <td class="bg-white">10 </td>
+              </tr>
+              <tr class="bg-blue">
+                <td class="text-left">Robustez </td>
+                <td class="bg-white">3 </td>
+                <td class="bg-white">7.5 </td>
+              </tr>
+              <tr class="bg-blue">
+                <td class="text-left">Consistencia </td>
+                <td class="bg-white">3 </td>
+                <td class="bg-white">7.5 </td>
+              </tr>
+              <tr class="bg-blue">
+                <td rowspan="3" class="text-left">Eficiencia </td>
+                <td class="text-left">Responsabilidad </td>
+                <td class="bg-white">4 </td>
+                <td class="bg-white">5 </td>
+                <td rowspan="3" class="bg-white">13.75 </td>
+                <td rowspan="3" class="bg-white"></td>
+              </tr>
+              <tr class="bg-blue">
+                <td class="text-left">Eficiencia de dispositivos </td>
+                <td class="bg-white">4 </td>
+                <td class="bg-white">5 </td>
+              </tr>
+              <tr class="bg-blue">
+                <td class="text-left">Accesibilidad </td>
+                <td class="bg-white">3 </td>
+                <td class="bg-white">3.75 </td>
+              </tr>
+              <tr class="bg-blue">
+                <td rowspan="3" class="text-left">Interactividad </td>
+                <td class="text-left">Robustez </td>
+                <td class="bg-white">4 </td>
+                <td class="bg-white">5 </td>
+                <td rowspan="3" class="bg-white">12.5 </td>
+                <td rowspan="3" class="bg-white"></td>
+              </tr>
+              <tr class="bg-blue">
+                <td class="text-left">Accesibilidad </td>
+                <td class="bg-white">2 </td>
+                <td class="bg-white">2.5 </td>
+              </tr>
+              <tr class="bg-blue">
+                <td class="text-left">Capacidad de comunicación </td>
+                <td class="bg-white">4 </td>
+                <td class="bg-white">5 </td>
+              </tr>
+              <tr class="bg-lightyellow">
+                <td rowspan="6">
+                  <div class="vertical-text bold-text">MANTENIBILIDAD </div>
+                </td>
+                <td rowspan="2" class="text-left">Facilidad de Prueba </td>
+                <td class="text-left">Auto descripción </td>
+                <td class="bg-white">3 </td>
+                <td class="bg-white">1.875 </td>
+                <td rowspan="2" class="bg-white">4.375 </td>
+                <td rowspan="2" class="bg-white">8.760 </td>
+              </tr>
+              <tr class="bg-lightyellow">
+                <td class="text-left">Estructuración </td>
+                <td class="bg-white">4 </td>
+                <td class="bg-white">2.5 </td>
+              </tr>
+              <tr class="bg-lightyellow">
+                <td rowspan="2" class="text-left">
+                  Facilidad de<br />Entendimiento 
+                </td>
+                <td class="text-left">Concisión </td>
+                <td class="bg-white">4 </td>
+                <td class="bg-white">5 </td>
+                <td rowspan="2" class="bg-white">10 </td>
+                <td rowspan="2" class="bg-white"></td>
+              </tr>
+              <tr class="bg-lightyellow">
+                <td class="text-left">Legibilidad </td>
+                <td class="bg-white">4 </td>
+                <td class="bg-white">5 </td>
+              </tr>
+              <tr class="bg-lightyellow">
+                <td rowspan="2" class="text-left">Modificabilidad </td>
+                <td class="text-left">Estructuración </td>
+                <td class="bg-white">3 </td>
+                <td class="bg-white">1.875 </td>
+                <td rowspan="2" class="bg-white">4.375 </td>
+                <td rowspan="2" class="bg-white"></td>
+              </tr>
+              <tr class="bg-lightyellow">
+                <td class="text-left">Escalabilidad </td>
+                <td class="bg-white">4 </td>
+                <td class="bg-white">2.5 </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
 
-<table class="tabla-furps">
-    <thead>
-        <tr>
-            <th colspan="2" class="furps-header"></th>
-            <th class="furps-header">CARACTERÍSTICAS</th>
-            <th class="furps-header">PUNTAJE</th>
-            <th class="furps-header">FACTOR</th>
-            <th class="furps-header">PUNTAJE</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr class="furps-f">
-            <td rowspan="3" class="furps-dark">F</td>
-            <td rowspan="3" class="bg-white"><div class="vertical-word">Functionality</div></td>
-            <td rowspan="3" class="bold-text">FUNCIONALIDAD</td>
-            <td rowspan="3">30</td>
-            <td class="text-left">Características y capacidades del programa</td>
-            <td>10</td>
-        </tr>
-        <tr class="furps-f">
-            <td class="text-left">Generalidad de las funciones</td>
-            <td>10</td>
-        </tr>
-        <tr class="furps-f">
-            <td class="text-left">Seguridad del Sistema</td>
-            <td>10</td>
-        </tr>
+        <div id="furps" class="info-card animate-slide-up hover-float">
+          <div class="card-header">
+            <span class="number-badge">08</span>
+            <h2>Modelo FURPS</h2>
+          </div>
+          
+          <h3 style="font-family: 'Nunito', sans-serif; color: var(--primary); font-size: 18px; margin-bottom: 10px;">APLICACIÓN DEL MODELO DE LA CALIDAD FURPS </h3>
+          <p class="descripcion" style="margin-bottom: 25px;">
+            Robert Grady y Hewlett Packard (HP) en 1987, desarrollaron el modelo de calidad FURPS, el cual se emplea diferentes factores de calidad de software, identificando 5 características de los cuales se deriva su nombre Functionality, Usability , Reliability, Performance, Supportability (Funcionalidad, Facilidad de Uso, Fiabilidad, Rendimiento, Soporte).
+          </p>
 
-        <tr class="furps-u">
-            <td rowspan="4" class="furps-dark">U</td>
-            <td rowspan="4" class="bg-white"><div class="vertical-word">Usability</div></td>
-            <td rowspan="4" class="bold-text">FACILIDAD DE USO</td>
-            <td rowspan="4">20</td>
-            <td class="text-left">Capacidad de Prueba</td>
-            <td>5</td>
-        </tr>
-        <tr class="furps-u">
-            <td class="text-left">Capacidad de configuración</td>
-            <td>5</td>
-        </tr>
-        <tr class="furps-u">
-            <td class="text-left">Compatibilidad</td>
-            <td>5</td>
-        </tr>
-        <tr class="furps-u">
-            <td class="text-left">Requisitos de instalación</td>
-            <td>5</td>
-        </tr>
+          <table class="tabla-moderna tabla-furps" style="margin-bottom: 30px">
+            <thead>
+              <tr>
+                <th colspan="2" class="furps-header bg-yellow"></th>
+                <th class="furps-header bg-yellow">CARACTERÍSTICAS </th>
+                <th class="furps-header bg-yellow">PUNTAJE </th>
+                <th class="furps-header bg-yellow">FACTOR </th>
+                <th class="furps-header bg-yellow">PUNTAJE </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="furps-f bg-peach">
+                <td rowspan="3" class="furps-dark bg-darkblue">F </td>
+                <td rowspan="3" class="bg-white">
+                  <div class="vertical-word">Functionality </div>
+                </td>
+                <td rowspan="3" class="bold-text">FUNCIONALIDAD </td>
+                <td rowspan="3">30 </td>
+                <td class="text-left">
+                  Características y capacidades del programa 
+                </td>
+                <td>10 </td>
+              </tr>
+              <tr class="furps-f bg-peach">
+                <td class="text-left">Generalidad de las funciones </td>
+                <td>10 </td>
+              </tr>
+              <tr class="furps-f bg-peach">
+                <td class="text-left">Seguridad del Sistema </td>
+                <td>10 </td>
+              </tr>
 
-        <tr class="furps-r">
-            <td rowspan="3" class="furps-dark">R</td>
-            <td rowspan="3" class="bg-white"><div class="vertical-word">Reliability</div></td>
-            <td rowspan="3" class="bold-text">CONFIABILIDAD</td>
-            <td rowspan="3">15</td>
-            <td class="text-left">Frecuencia y severidad de fallos</td>
-            <td>5</td>
-        </tr>
-        <tr class="furps-r">
-            <td class="text-left">Exactitud de las salidas</td>
-            <td>5</td>
-        </tr>
-        <tr class="furps-r">
-            <td class="text-left">Capacidad de predicción</td>
-            <td>5</td>
-        </tr>
+              <tr class="furps-u bg-blue">
+                <td rowspan="4" class="furps-dark bg-darkblue">U </td>
+                <td rowspan="4" class="bg-white">
+                  <div class="vertical-word">Usability </div>
+                </td>
+                <td rowspan="4" class="bold-text">FACILIDAD DE USO </td>
+                <td rowspan="4">20 </td>
+                <td class="text-left">Capacidad de Prueba </td>
+                <td>5 </td>
+              </tr>
+              <tr class="furps-u bg-blue">
+                <td class="text-left">Capacidad de configuración </td>
+                <td>5 </td>
+              </tr>
+              <tr class="furps-u bg-blue">
+                <td class="text-left">Compatibilidad </td>
+                <td>5 </td>
+              </tr>
+              <tr class="furps-u bg-blue">
+                <td class="text-left">Requisitos de instalación </td>
+                <td>5 </td>
+              </tr>
 
-        <tr class="furps-p">
-            <td rowspan="4" class="furps-dark">P</td>
-            <td rowspan="4" class="bg-white"><div class="vertical-word">Performance</div></td>
-            <td rowspan="4" class="bold-text">RENDIMIENTO</td>
-            <td rowspan="4">20</td>
-            <td class="text-left">Factores Humanos</td>
-            <td>5</td>
-        </tr>
-        <tr class="furps-p">
-            <td class="text-left">Factores Estéticos</td>
-            <td>5</td>
-        </tr>
-        <tr class="furps-p">
-            <td class="text-left">Consistencia de la interfaz</td>
-            <td>5</td>
-        </tr>
-        <tr class="furps-p">
-            <td class="text-left">Documentación</td>
-            <td>5</td>
-        </tr>
+              <tr class="furps-r bg-lightyellow">
+                <td rowspan="3" class="furps-dark bg-darkblue">R </td>
+                <td rowspan="3" class="bg-white">
+                  <div class="vertical-word">Reliability </div>
+                </td>
+                <td rowspan="3" class="bold-text">CONFIABILIDAD </td>
+                <td rowspan="3">15 </td>
+                <td class="text-left">Frecuencia y severidad de fallos </td>
+                <td>5 </td>
+              </tr>
+              <tr class="furps-r bg-lightyellow">
+                <td class="text-left">Exactitud de las salidas </td>
+                <td>5 </td>
+              </tr>
+              <tr class="furps-r bg-lightyellow">
+                <td class="text-left">Capacidad de predicción </td>
+                <td>5 </td>
+              </tr>
 
-        <tr class="furps-s">
-            <td rowspan="5" class="furps-dark">S</td>
-            <td rowspan="5" class="bg-white"><div class="vertical-word">Supportability</div></td>
-            <td rowspan="5" class="bold-text">SOPORTE</td>
-            <td rowspan="5">15</td>
-            <td class="text-left">Velocidad de procesamiento</td>
-            <td>3</td>
-        </tr>
-        <tr class="furps-s">
-            <td class="text-left">Tiempo de respuesta</td>
-            <td>3</td>
-        </tr>
-        <tr class="furps-s">
-            <td class="text-left">Consumo de recursos</td>
-            <td>3</td>
-        </tr>
-        <tr class="furps-s">
-            <td class="text-left">Rendimiento efectivo total</td>
-            <td>3</td>
-        </tr>
-        <tr class="furps-s">
-            <td class="text-left">Eficacia</td>
-            <td>3</td>
-        </tr>
+              <tr class="furps-p bg-purple">
+                <td rowspan="4" class="furps-dark bg-darkblue">P </td>
+                <td rowspan="4" class="bg-white">
+                  <div class="vertical-word">Performance </div>
+                </td>
+                <td rowspan="4" class="bold-text">RENDIMIENTO </td>
+                <td rowspan="4">20 </td>
+                <td class="text-left">Factores Humanos </td>
+                <td>5 </td>
+              </tr>
+              <tr class="furps-p bg-purple">
+                <td class="text-left">Factores Estéticos </td>
+                <td>5 </td>
+              </tr>
+              <tr class="furps-p bg-purple">
+                <td class="text-left">Consistencia de la interfaz </td>
+                <td>5 </td>
+              </tr>
+              <tr class="furps-p bg-purple">
+                <td class="text-left">Documentación </td>
+                <td>5 </td>
+              </tr>
 
-        <tr>
-            <td colspan="2" class="bg-grey"></td>
-            <td colspan="2" class="bg-grey bold-text">Puntaje Total</td>
-            <td class="bg-black"></td>
-            <td class="bg-grey">100</td>
-        </tr>
-    </tbody>
-</table>
+              <tr class="furps-s bg-green">
+                <td rowspan="5" class="furps-dark bg-darkblue">S </td>
+                <td rowspan="5" class="bg-white">
+                  <div class="vertical-word">Supportability </div>
+                </td>
+                <td rowspan="5" class="bold-text">SOPORTE </td>
+                <td rowspan="5">15 </td>
+                <td class="text-left">Velocidad de procesamiento </td>
+                <td>3 </td>
+              </tr>
+              <tr class="furps-s bg-green">
+                <td class="text-left">Tiempo de respuesta </td>
+                <td>3 </td>
+              </tr>
+              <tr class="furps-s bg-green">
+                <td class="text-left">Consumo de recursos </td>
+                <td>3 </td>
+              </tr>
+              <tr class="furps-s bg-green">
+                <td class="text-left">Rendimiento efectivo total </td>
+                <td>3 </td>
+              </tr>
+              <tr class="furps-s bg-green">
+                <td class="text-left">Eficacia </td>
+                <td>3 </td>
+              </tr>
 
-<table class="tabla-furps">
-    <thead>
-        <tr>
-            <th rowspan="2" class="furps-header"></th>
-            <th rowspan="2" class="furps-header">CARACTERÍSTICAS</th>
-            <th rowspan="2" class="furps-header">FACTOR</th>
-            <th colspan="4" class="furps-header">VALORACIÓN</th>
-        </tr>
-        <tr>
-            <th class="furps-header">1</th>
-            <th class="furps-header">2</th>
-            <th class="furps-header">3</th>
-            <th class="furps-header">4</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr class="furps-f">
-            <td rowspan="3" class="furps-dark">F</td>
-            <td rowspan="3" class="bold-text">FUNCIONALIDAD</td>
-            <td class="text-left">Características y capacidades del programa</td>
-            <td class="bg-white"></td><td class="bg-white"></td><td class="bg-white"></td><td class="bg-white"></td>
-        </tr>
-        <tr class="furps-f">
-            <td class="text-left">Generalidad de las funciones</td>
-            <td class="bg-white"></td><td class="bg-white"></td><td class="bg-white"></td><td class="bg-white"></td>
-        </tr>
-        <tr class="furps-f">
-            <td class="text-left">Seguridad del Sistema</td>
-            <td class="bg-white"></td><td class="bg-white"></td><td class="bg-white"></td><td class="bg-white"></td>
-        </tr>
+              <tr>
+                <td colspan="2" class="footer-gris"></td>
+                <td colspan="2" class="footer-gris bold-text">Puntaje Total </td>
+                <td class="footer-negro"></td>
+                <td class="footer-gris">100 </td>
+              </tr>
+            </tbody>
+          </table>
 
-        <tr class="furps-u">
-            <td rowspan="4" class="furps-dark">U</td>
-            <td rowspan="4" class="bold-text">FACILIDAD DE USO</td>
-            <td class="text-left">Capacidad de Prueba</td>
-            <td class="bg-white"></td><td class="bg-white"></td><td class="bg-white"></td><td class="bg-white"></td>
-        </tr>
-        <tr class="furps-u">
-            <td class="text-left">Capacidad de configuración</td>
-            <td class="bg-white"></td><td class="bg-white"></td><td class="bg-white"></td><td class="bg-white"></td>
-        </tr>
-        <tr class="furps-u">
-            <td class="text-left">Compatibilidad</td>
-            <td class="bg-white"></td><td class="bg-white"></td><td class="bg-white"></td><td class="bg-white"></td>
-        </tr>
-        <tr class="furps-u">
-            <td class="text-left">Requisitos de instalación</td>
-            <td class="bg-white"></td><td class="bg-white"></td><td class="bg-white"></td><td class="bg-white"></td>
-        </tr>
+          <h3 style="font-family: 'Nunito', sans-serif; color: var(--primary); font-size: 18px; margin-bottom: 20px;">Aplicación de la evaluación al RED </h3>
+          <table class="tabla-moderna tabla-furps" style="margin-bottom: 30px">
+            <thead>
+              <tr>
+                <th rowspan="2" class="furps-header bg-yellow"></th>
+                <th rowspan="2" class="furps-header bg-yellow">
+                  CARACTERÍSTICAS 
+                </th>
+                <th rowspan="2" class="furps-header bg-yellow">FACTOR </th>
+                <th colspan="4" class="furps-header bg-yellow">VALORACIÓN </th>
+              </tr>
+              <tr>
+                <th class="furps-header bg-yellow">1 </th>
+                <th class="furps-header bg-yellow">2 </th>
+                <th class="furps-header bg-yellow">3 </th>
+                <th class="furps-header bg-yellow">4 </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="furps-f bg-peach">
+                <td rowspan="3" class="furps-dark bg-darkblue">F </td>
+                <td rowspan="3" class="bold-text">FUNCIONALIDAD </td>
+                <td class="text-left">
+                  Características y capacidades del programa 
+                </td>
+                <td class="bg-white"></td>
+                <td class="bg-white"></td>
+                <td class="bg-white"></td>
+                <td class="bg-white"><span class="dot">●</span> </td>
+              </tr>
+              <tr class="furps-f bg-peach">
+                <td class="text-left">Generalidad de las funciones </td>
+                <td class="bg-white"></td>
+                <td class="bg-white"></td>
+                <td class="bg-white"></td>
+                <td class="bg-white"><span class="dot">●</span> </td>
+              </tr>
+              <tr class="furps-f bg-peach">
+                <td class="text-left">Seguridad del Sistema </td>
+                <td class="bg-white"></td>
+                <td class="bg-white"></td>
+                <td class="bg-white"><span class="dot">●</span> </td>
+                <td class="bg-white"></td>
+              </tr>
 
-        <tr class="furps-r">
-            <td rowspan="3" class="furps-dark">R</td>
-            <td rowspan="3" class="bold-text">CONFIABILIDAD</td>
-            <td class="text-left">Frecuencia y severidad de fallos</td>
-            <td class="bg-white"></td><td class="bg-white"></td><td class="bg-white"></td><td class="bg-white"></td>
-        </tr>
-        <tr class="furps-r">
-            <td class="text-left">Exactitud de las salidas</td>
-            <td class="bg-white"></td><td class="bg-white"></td><td class="bg-white"></td><td class="bg-white"></td>
-        </tr>
-        <tr class="furps-r">
-            <td class="text-left">Capacidad de predicción</td>
-            <td class="bg-white"></td><td class="bg-white"></td><td class="bg-white"></td><td class="bg-white"></td>
-        </tr>
+              <tr class="furps-u bg-blue">
+                <td rowspan="4" class="furps-dark bg-darkblue">U </td>
+                <td rowspan="4" class="bold-text">FACILIDAD DE USO </td>
+                <td class="text-left">Capacidad de Prueba </td>
+                <td class="bg-white"></td>
+                <td class="bg-white"></td>
+                <td class="bg-white"></td>
+                <td class="bg-white"><span class="dot">●</span> </td>
+              </tr>
+              <tr class="furps-u bg-blue">
+                <td class="text-left">Capacidad de configuración </td>
+                <td class="bg-white"></td>
+                <td class="bg-white"></td>
+                <td class="bg-white"></td>
+                <td class="bg-white"><span class="dot">●</span> </td>
+              </tr>
+              <tr class="furps-u bg-blue">
+                <td class="text-left">Compatibilidad </td>
+                <td class="bg-white"></td>
+                <td class="bg-white"></td>
+                <td class="bg-white"></td>
+                <td class="bg-white"><span class="dot">●</span> </td>
+              </tr>
+              <tr class="furps-u bg-blue">
+                <td class="text-left">Requisitos de instalación </td>
+                <td class="bg-white"></td>
+                <td class="bg-white"></td>
+                <td class="bg-white"></td>
+                <td class="bg-white"><span class="dot">●</span> </td>
+              </tr>
 
-        <tr class="furps-p">
-            <td rowspan="4" class="furps-dark">P</td>
-            <td rowspan="4" class="bold-text">RENDIMIENTO</td>
-            <td class="text-left">Factores Humanos</td>
-            <td class="bg-white"></td><td class="bg-white"></td><td class="bg-white"></td><td class="bg-white"></td>
-        </tr>
-        <tr class="furps-p">
-            <td class="text-left">Factores Estéticos</td>
-            <td class="bg-white"></td><td class="bg-white"></td><td class="bg-white"></td><td class="bg-white"></td>
-        </tr>
-        <tr class="furps-p">
-            <td class="text-left">Consistencia de la interfaz</td>
-            <td class="bg-white"></td><td class="bg-white"></td><td class="bg-white"></td><td class="bg-white"></td>
-        </tr>
-        <tr class="furps-p">
-            <td class="text-left">Documentación</td>
-            <td class="bg-white"></td><td class="bg-white"></td><td class="bg-white"></td><td class="bg-white"></td>
-        </tr>
+              <tr class="furps-r bg-lightyellow">
+                <td rowspan="3" class="furps-dark bg-darkblue">R </td>
+                <td rowspan="3" class="bold-text">CONFIABILIDAD </td>
+                <td class="text-left">Frecuencia y severidad de fallos </td>
+                <td class="bg-white"></td>
+                <td class="bg-white"></td>
+                <td class="bg-white"><span class="dot">●</span> </td>
+                <td class="bg-white"></td>
+              </tr>
+              <tr class="furps-r bg-lightyellow">
+                <td class="text-left">Exactitud de las salidas </td>
+                <td class="bg-white"></td>
+                <td class="bg-white"></td>
+                <td class="bg-white"></td>
+                <td class="bg-white"><span class="dot">●</span> </td>
+              </tr>
+              <tr class="furps-r bg-lightyellow">
+                <td class="text-left">Capacidad de predicción </td>
+                <td class="bg-white"></td>
+                <td class="bg-white"></td>
+                <td class="bg-white"></td>
+                <td class="bg-white"><span class="dot">●</span> </td>
+              </tr>
 
-        <tr class="furps-s">
-            <td rowspan="5" class="furps-dark">S</td>
-            <td rowspan="5" class="bold-text">SOPORTE</td>
-            <td class="text-left">Velocidad de procesamiento</td>
-            <td class="bg-white"></td><td class="bg-white"></td><td class="bg-white"></td><td class="bg-white"></td>
-        </tr>
-        <tr class="furps-s">
-            <td class="text-left">Tiempo de respuesta</td>
-            <td class="bg-white"></td><td class="bg-white"></td><td class="bg-white"></td><td class="bg-white"></td>
-        </tr>
-        <tr class="furps-s">
-            <td class="text-left">Consumo de recursos</td>
-            <td class="bg-white"></td><td class="bg-white"></td><td class="bg-white"></td><td class="bg-white"></td>
-        </tr>
-        <tr class="furps-s">
-            <td class="text-left">Rendimiento efectivo total</td>
-            <td class="bg-white"></td><td class="bg-white"></td><td class="bg-white"></td><td class="bg-white"></td>
-        </tr>
-        <tr class="furps-s">
-            <td class="text-left">Eficacia</td>
-            <td class="bg-white"></td><td class="bg-white"></td><td class="bg-white"></td><td class="bg-white"></td>
-        </tr>
-    </tbody>
-</table>
+              <tr class="furps-p bg-purple">
+                <td rowspan="4" class="furps-dark bg-darkblue">P </td>
+                <td rowspan="4" class="bold-text">RENDIMIENTO </td>
+                <td class="text-left">Factores Humanos </td>
+                <td class="bg-white"></td>
+                <td class="bg-white"></td>
+                <td class="bg-white"></td>
+                <td class="bg-white"><span class="dot">●</span> </td>
+              </tr>
+              <tr class="furps-p bg-purple">
+                <td class="text-left">Factores Estéticos </td>
+                <td class="bg-white"></td>
+                <td class="bg-white"></td>
+                <td class="bg-white"></td>
+                <td class="bg-white"><span class="dot">●</span> </td>
+              </tr>
+              <tr class="furps-p bg-purple">
+                <td class="text-left">Consistencia de la interfaz </td>
+                <td class="bg-white"></td>
+                <td class="bg-white"></td>
+                <td class="bg-white"></td>
+                <td class="bg-white"><span class="dot">●</span> </td>
+              </tr>
+              <tr class="furps-p bg-purple">
+                <td class="text-left">Documentación </td>
+                <td class="bg-white"></td>
+                <td class="bg-white"></td>
+                <td class="bg-white"><span class="dot">●</span> </td>
+                <td class="bg-white"></td>
+              </tr>
 
-<table class="tabla-furps">
-    <thead>
-        <tr>
-            <th rowspan="2" class="furps-header"></th>
-            <th rowspan="2" class="furps-header">CARACTERÍSTICAS</th>
-            <th rowspan="2" class="furps-header">FACTOR</th>
-            <th colspan="4" class="furps-header">VALORACIÓN</th>
-        </tr>
-        <tr>
-            <th class="furps-header">Puntaje</th>
-            <th class="furps-header">Pnt. E</th>
-            <th class="furps-header">Punt</th>
-            <th class="furps-header">Total</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr class="furps-f">
-            <td rowspan="3" class="furps-dark">F</td>
-            <td rowspan="3" class="bold-text">FUNCIONALIDAD</td>
-            <td class="text-left">Características y capacidades del programa</td>
-            <td></td><td></td><td></td>
-            <td rowspan="3" class="bg-white"></td>
-        </tr>
-        <tr class="furps-f">
-            <td class="text-left">Generalidad de las funciones</td>
-            <td></td><td></td><td></td>
-        </tr>
-        <tr class="furps-f">
-            <td class="text-left">Seguridad del Sistema</td>
-            <td></td><td></td><td></td>
-        </tr>
+              <tr class="furps-s bg-green">
+                <td rowspan="5" class="furps-dark bg-darkblue">S </td>
+                <td rowspan="5" class="bold-text">SOPORTE </td>
+                <td class="text-left">Velocidad de procesamiento </td>
+                <td class="bg-white"></td>
+                <td class="bg-white"></td>
+                <td class="bg-white"><span class="dot">●</span> </td>
+                <td class="bg-white"></td>
+              </tr>
+              <tr class="furps-s bg-green">
+                <td class="text-left">Tiempo de respuesta </td>
+                <td class="bg-white"></td>
+                <td class="bg-white"></td>
+                <td class="bg-white"><span class="dot">●</span> </td>
+                <td class="bg-white"></td>
+              </tr>
+              <tr class="furps-s bg-green">
+                <td class="text-left">Consumo de recursos </td>
+                <td class="bg-white"></td>
+                <td class="bg-white"></td>
+                <td class="bg-white"></td>
+                <td class="bg-white"><span class="dot">●</span> </td>
+              </tr>
+              <tr class="furps-s bg-green">
+                <td class="text-left">Rendimiento efectivo total </td>
+                <td class="bg-white"></td>
+                <td class="bg-white"></td>
+                <td class="bg-white"></td>
+                <td class="bg-white"><span class="dot">●</span> </td>
+              </tr>
+              <tr class="furps-s bg-green">
+                <td class="text-left">Eficacia </td>
+                <td class="bg-white"></td>
+                <td class="bg-white"></td>
+                <td class="bg-white"></td>
+                <td class="bg-white"><span class="dot">●</span> </td>
+              </tr>
+            </tbody>
+          </table>
 
-        <tr class="furps-u">
-            <td rowspan="4" class="furps-dark">U</td>
-            <td rowspan="4" class="bold-text">FACILIDAD DE USO</td>
-            <td class="text-left">Capacidad de Prueba</td>
-            <td></td><td></td><td></td>
-            <td rowspan="4" class="bg-white"></td>
-        </tr>
-        <tr class="furps-u">
-            <td class="text-left">Capacidad de configuración</td>
-            <td></td><td></td><td></td>
-        </tr>
-        <tr class="furps-u">
-            <td class="text-left">Compatibilidad</td>
-            <td></td><td></td><td></td>
-        </tr>
-        <tr class="furps-u">
-            <td class="text-left">Requisitos de instalación</td>
-            <td></td><td></td><td></td>
-        </tr>
+          <h3 style="font-family: 'Nunito', sans-serif; color: var(--primary); font-size: 18px; margin-bottom: 20px;">Equivalencia de Puntajes </h3>
+          <table class="tabla-moderna tabla-furps">
+            <thead>
+              <tr>
+                <th rowspan="2" class="furps-header bg-yellow"></th>
+                <th rowspan="2" class="furps-header bg-yellow">
+                  CARACTERÍSTICAS 
+                </th>
+                <th rowspan="2" class="furps-header bg-yellow">FACTOR </th>
+                <th colspan="4" class="furps-header bg-yellow">VALORACIÓN </th>
+              </tr>
+              <tr>
+                <th class="furps-header bg-yellow">Puntaje </th>
+                <th class="furps-header bg-yellow">Pnt. E </th>
+                <th class="furps-header bg-yellow">Punt </th>
+                <th class="furps-header bg-yellow">Total </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="furps-f bg-peach">
+                <td rowspan="3" class="furps-dark bg-darkblue">F </td>
+                <td rowspan="3" class="bold-text">FUNCIONALIDAD </td>
+                <td class="text-left">
+                  Características y capacidades del programa 
+                </td>
+                <td class="bg-white">4 </td>
+                <td class="bg-white">10 </td>
+                <td class="bg-white">27.5 </td>
+                <td rowspan="3" class="bg-white">93.5 </td>
+              </tr>
+              <tr class="furps-f bg-peach">
+                <td class="text-left">Generalidad de las funciones </td>
+                <td class="bg-white">4 </td>
+                <td class="bg-white">10 </td>
+                <td class="bg-white"></td>
+              </tr>
+              <tr class="furps-f bg-peach">
+                <td class="text-left">Seguridad del Sistema </td>
+                <td class="bg-white">3 </td>
+                <td class="bg-white">7.5 </td>
+                <td class="bg-white"></td>
+              </tr>
 
-        <tr class="furps-r">
-            <td rowspan="3" class="furps-dark">R</td>
-            <td rowspan="3" class="bold-text">CONFIABILIDAD</td>
-            <td class="text-left">Frecuencia y severidad de fallos</td>
-            <td></td><td></td><td></td>
-            <td rowspan="3" class="bg-white"></td>
-        </tr>
-        <tr class="furps-r">
-            <td class="text-left">Exactitud de las salidas</td>
-            <td></td><td></td><td></td>
-        </tr>
-        <tr class="furps-r">
-            <td class="text-left">Capacidad de predicción</td>
-            <td></td><td></td><td></td>
-        </tr>
+              <tr class="furps-u bg-blue">
+                <td rowspan="4" class="furps-dark bg-darkblue">U </td>
+                <td rowspan="4" class="bold-text">FACILIDAD DE USO </td>
+                <td class="text-left">Capacidad de Prueba </td>
+                <td class="bg-white">4 </td>
+                <td class="bg-white">5 </td>
+                <td class="bg-white">20 </td>
+                <td rowspan="4" class="bg-white"></td>
+              </tr>
+              <tr class="furps-u bg-blue">
+                <td class="text-left">Capacidad de configuración </td>
+                <td class="bg-white">4 </td>
+                <td class="bg-white">5 </td>
+                <td class="bg-white"></td>
+              </tr>
+              <tr class="furps-u bg-blue">
+                <td class="text-left">Compatibilidad </td>
+                <td class="bg-white">4 </td>
+                <td class="bg-white">5 </td>
+                <td class="bg-white"></td>
+              </tr>
+              <tr class="furps-u bg-blue">
+                <td class="text-left">Requisitos de instalación </td>
+                <td class="bg-white">4 </td>
+                <td class="bg-white">5 </td>
+                <td class="bg-white"></td>
+              </tr>
 
-        <tr class="furps-p">
-            <td rowspan="4" class="furps-dark">P</td>
-            <td rowspan="4" class="bold-text">RENDIMIENTO</td>
-            <td class="text-left">Factores Humanos</td>
-            <td></td><td></td><td></td>
-            <td rowspan="4" class="bg-white"></td>
-        </tr>
-        <tr class="furps-p">
-            <td class="text-left">Factores Estéticos</td>
-            <td></td><td></td><td></td>
-        </tr>
-        <tr class="furps-p">
-            <td class="text-left">Consistencia de la interfaz</td>
-            <td></td><td></td><td></td>
-        </tr>
-        <tr class="furps-p">
-            <td class="text-left">Documentación</td>
-            <td></td><td></td><td></td>
-        </tr>
+              <tr class="furps-r bg-lightyellow">
+                <td rowspan="3" class="furps-dark bg-darkblue">R </td>
+                <td rowspan="3" class="bold-text">CONFIABILIDAD </td>
+                <td class="text-left">Frecuencia y severidad de fallos </td>
+                <td class="bg-white">3 </td>
+                <td class="bg-white">3.75 </td>
+                <td class="bg-white">13.75 </td>
+                <td rowspan="3" class="bg-white"></td>
+              </tr>
+              <tr class="furps-r bg-lightyellow">
+                <td class="text-left">Exactitud de las salidas </td>
+                <td class="bg-white">4 </td>
+                <td class="bg-white">5 </td>
+                <td class="bg-white"></td>
+              </tr>
+              <tr class="furps-r bg-lightyellow">
+                <td class="text-left">Capacidad de predicción </td>
+                <td class="bg-white">4 </td>
+                <td class="bg-white">5 </td>
+                <td class="bg-white"></td>
+              </tr>
 
-        <tr class="furps-s">
-            <td rowspan="5" class="furps-dark">S</td>
-            <td rowspan="5" class="bold-text">SOPORTE</td>
-            <td class="text-left">Velocidad de procesamiento</td>
-            <td></td><td></td><td></td>
-            <td rowspan="5" class="bg-white"></td>
-        </tr>
-        <tr class="furps-s">
-            <td class="text-left">Tiempo de respuesta</td>
-            <td></td><td></td><td></td>
-        </tr>
-        <tr class="furps-s">
-            <td class="text-left">Consumo de recursos</td>
-            <td></td><td></td><td></td>
-        </tr>
-        <tr class="furps-s">
-            <td class="text-left">Rendimiento efectivo total</td>
-            <td></td><td></td><td></td>
-        </tr>
-        <tr class="furps-s">
-            <td class="text-left">Eficacia</td>
-            <td></td><td></td><td></td>
-        </tr>
-    </tbody>
-</table>
+              <tr class="furps-p bg-purple">
+                <td rowspan="4" class="furps-dark bg-darkblue">P </td>
+                <td rowspan="4" class="bold-text">RENDIMIENTO </td>
+                <td class="text-left">Factores Humanos </td>
+                <td class="bg-white">4 </td>
+                <td class="bg-white">5 </td>
+                <td class="bg-white">18.75 </td>
+                <td rowspan="4" class="bg-white"></td>
+              </tr>
+              <tr class="furps-p bg-purple">
+                <td class="text-left">Factores Estéticos </td>
+                <td class="bg-white">4 </td>
+                <td class="bg-white">5 </td>
+                <td class="bg-white"></td>
+              </tr>
+              <tr class="furps-p bg-purple">
+                <td class="text-left">Consistencia de la interfaz </td>
+                <td class="bg-white">4 </td>
+                <td class="bg-white">5 </td>
+                <td class="bg-white"></td>
+              </tr>
+              <tr class="furps-p bg-purple">
+                <td class="text-left">Documentación </td>
+                <td class="bg-white">3 </td>
+                <td class="bg-white">3.75 </td>
+                <td class="bg-white"></td>
+              </tr>
 
-<table class="tabla-furps" style="max-width: 400px;">
-    <thead>
-        <tr>
-            <th class="furps-header">MODELO</th>
-            <th class="furps-header">PUNTAJE</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td class="text-left">MacCall</td>
-            <td></td>
-        </tr>
-        <tr>
-            <td class="text-left">Boehm</td>
-            <td></td>
-        </tr>
-        <tr>
-            <td class="text-left">FURPS</td>
-            <td></td>
-        </tr>
-    </tbody>
-</table>
+              <tr class="furps-s bg-green">
+                <td rowspan="5" class="furps-dark bg-darkblue">S </td>
+                <td rowspan="5" class="bold-text">SOPORTE </td>
+                <td class="text-left">Velocidad de procesamiento </td>
+                <td class="bg-white">3 </td>
+                <td class="bg-white">2.25 </td>
+                <td class="bg-white">13,5 </td>
+                <td rowspan="5" class="bg-white"></td>
+              </tr>
+              <tr class="furps-s bg-green">
+                <td class="text-left">Tiempo de respuesta </td>
+                <td class="bg-white">3 </td>
+                <td class="bg-white">2,25 </td>
+                <td class="bg-white"></td>
+              </tr>
+              <tr class="furps-s bg-green">
+                <td class="text-left">Consumo de recursos </td>
+                <td class="bg-white">4 </td>
+                <td class="bg-white">3 </td>
+                <td class="bg-white"></td>
+              </tr>
+              <tr class="furps-s bg-green">
+                <td class="text-left">Rendimiento efectivo total </td>
+                <td class="bg-white">4 </td>
+                <td class="bg-white">3 </td>
+                <td class="bg-white"></td>
+              </tr>
+              <tr class="furps-s bg-green">
+                <td class="text-left">Eficacia </td>
+                <td class="bg-white">4 </td>
+                <td class="bg-white">3 </td>
+                <td class="bg-white"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
 
-</body>
+        <div id="final" class="info-card animate-slide-up hover-float">
+          <div class="card-header">
+            <span class="number-badge">09</span>
+            <h2>COMPARACIÓN DE RESULTADOS ENTRE LOS MODELOS DE EVALUACIÓN DE LA CALIDAD APLICADOS </h2>
+          </div>
+          <table
+            class="tabla-moderna tabla-furps"
+            style="max-width: 400px; margin: 0 auto"
+          >
+            <thead>
+              <tr>
+                <th class="furps-header bg-yellow">MODELO </th>
+                <th class="furps-header bg-yellow">PUNTAJE </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="text-left bg-white">MacCall </td>
+                <td class="bg-white">89.1 </td>
+              </tr>
+              <tr>
+                <td class="text-left bg-white">Boehm </td>
+                <td class="bg-white">76.26 </td>
+              </tr>
+              <tr>
+                <td class="text-left bg-white">FURPS </td>
+                <td class="bg-white">93.5 </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div id="conclusiones" class="info-card animate-slide-up hover-float">
+          <div class="card-header">
+            <span class="number-badge">8</span>
+            <h2>CONCLUSIONES </h2>
+          </div>
+          <p class="descripcion" style="margin-bottom: 15px; color: var(--text-dark);">
+            El análisis realizado al software YouTube mediante los modelos de calidad McCall, Boehm y FURPS permite concluir que la plataforma presenta un alto nivel de calidad global, destacándose por su funcionalidad, facilidad de uso, rendimiento y capacidad de adaptación a distintos entornos.
+          </p>
+          <p class="descripcion" style="margin-bottom: 15px; color: var(--text-dark);">
+            Los resultados obtenidos evidencian que YouTube es un sistema robusto, escalable y ampliamente optimizado para la experiencia del usuario, lo cual se refleja en su uso masivo a nivel mundial.
+          </p>
+          <p class="descripcion" style="margin-bottom: 15px; color: var(--text-dark);">
+            No obstante, se identifican algunas oportunidades de mejora en aspectos como la interoperabilidad, el consumo de recursos, la accesibilidad y ciertos elementos de soporte y prueba del sistema.
+          </p>
+          <p class="descripcion" style="color: var(--text-dark);">
+            En general, la evaluación demuestra que YouTube cumple de manera satisfactoria con los estándares de calidad del software, consolidándose como una plataforma eficiente, confiable y altamente competitiva en el entorno digital.
+          </p>
+        </div>
+
+        <div id="referencias" class="info-card animate-slide-up hover-float">
+          <div class="card-header">
+            <span class="number-badge">9</span>
+            <h2>REFERENCIAS BIBLIOGRÁFICAS </h2>
+          </div>
+          <ul class="custom-ul" style="color: var(--text-muted); font-size: 15px; line-height: 1.8;">
+            <li>Libro Electrónico Multimedial: Recursos Educativos Digitales. Capítulos I y II. (CVUDES). Chinchilla, Z. (2016). Recuperado de: <a href="https://aulavirtual-eew.cvudes.edu.co/publico/lems/L.000.011.EATE/Documentos/cap1/Capitulo_Completo.pdf" target="_blank" style="color: var(--primary); text-decoration: none; font-weight: 600;">Enlace de recuperación</a> </li>
+            <li>Libro Electrónico Multimedial: Evaluación de la Calidad de la Tecnología Educativa. Capítulos II y IV. (CVUDES). Rey, A. (2015). Recuperado de: <a href="https://aulavirtual-eew.cvudes.edu.co/publico/lems/L.000.007.EATE/Documentos/cap2/Capitulo_Completo.pdf" target="_blank" style="color: var(--primary); text-decoration: none; font-weight: 600;">Enlace de recuperación</a> </li>
+            <li>Ortiz, K. (2018). Modelos de Calidad de Software Furps. (Video) Recuperado de: <a href="https://www.youtube.com/watch?v=_Y01_ve0deo" target="_blank" style="color: var(--primary); text-decoration: none; font-weight: 600;">https://www.youtube.com/watch?v=_Y01_ve0deo</a> </li>
+            <li>Fillotranni, P (2007), Calidad del desarrollo de software. Modelos de Calidad de Software, (Universidad Nacional del Sur). Recuperado de: <a href="http://www.cs.uns.edu.ar/~prf/teaching/SQ07/clase6.pdf" target="_blank" style="color: var(--primary); text-decoration: none; font-weight: 600;">http://www.cs.uns.edu.ar/~prf/teaching/SQ07/clase6.pdf</a> </li>
+          </ul>
+        </div>
+      </main>
+    </div>
+
+    <!-- Script para controlar el menú hamburguesa y subtemas colapsables -->
+    <script>
+      const menuToggle = document.getElementById('menuToggle');
+      const closeMenu = document.getElementById('closeMenu');
+      const sidebar = document.getElementById('sidebar');
+      const menuOverlay = document.getElementById('menuOverlay');
+      const toggleButtons = document.querySelectorAll('.toggle-submenu');
+
+      // Abrir menú
+      menuToggle.addEventListener('click', () => {
+        sidebar.classList.add('open');
+        menuOverlay.classList.add('active');
+        menuToggle.style.opacity = '0';
+        menuToggle.style.pointerEvents = 'none';
+      });
+
+      // Cerrar menú
+      const closeMenuFn = () => {
+        sidebar.classList.remove('open');
+        menuOverlay.classList.remove('active');
+        menuToggle.style.opacity = '1';
+        menuToggle.style.pointerEvents = 'auto';
+      };
+
+      closeMenu.addEventListener('click', closeMenuFn);
+      menuOverlay.addEventListener('click', closeMenuFn);
+
+      // Cerrar menú al hacer clic en un enlace (permitir navegación primero)
+      const sidebarLinks = sidebar.querySelectorAll('a:not(.toggle-submenu)');
+      sidebarLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+          // Permitir que el link navegue normalmente
+          // Cerrar el menú después de un pequeño delay
+          setTimeout(closeMenuFn, 100);
+        });
+      });
+
+      // Manejar colapso/expansión de subtemas
+      toggleButtons.forEach(button => {
+        button.addEventListener('click', (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          const submenu = button.parentElement.querySelector('.submenu');
+          const isExpanded = button.getAttribute('aria-expanded') === 'true';
+          
+          if (submenu) {
+            if (isExpanded) {
+              // Cerrar con animación suave
+              submenu.style.display = 'none';
+              button.setAttribute('aria-expanded', 'false');
+              button.style.transform = 'rotate(0deg)';
+            } else {
+              // Abrir con animación suave
+              submenu.style.display = 'block';
+              // Forzar reflow para que la animación funcione
+              submenu.offsetHeight;
+              button.setAttribute('aria-expanded', 'true');
+              button.style.transform = 'rotate(-180deg)';
+            }
+          }
+        });
+      });
+    </script>
+  </body>
 </html>

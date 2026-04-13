@@ -1,0 +1,55 @@
+<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f43f5e;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#e11d48;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#60a5fa;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#3b82f6;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="grad3" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#fbbf24;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#f59e0b;stop-opacity:1" />
+    </linearGradient>
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="4" stdDeviation="3" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+  
+  <!-- Fondo circular -->
+  <circle cx="100" cy="100" r="95" fill="rgba(255,255,255,0.1)" stroke="url(#grad1)" stroke-width="2"/>
+  
+  <!-- Estrella central grande (Calidad) -->
+  <g transform="translate(100, 90)">
+    <!-- Estrella de 5 puntas con gradiente -->
+    <polygon points="0,-45 10.5,-14 47,-14 18,12 28,43 0,17 -28,43 -18,12 -47,-14 -10.5,-14" 
+             fill="url(#grad1)" filter="url(#shadow)"/>
+  </g>
+  
+  <!-- Círculos de evaluación alrededor (representando los 3 modelos) -->
+  <!-- Círculo 1 McCall (Rosa) -->
+  <circle cx="65" cy="55" r="12" fill="url(#grad1)" opacity="0.8" filter="url(#shadow)"/>
+  <text x="65" y="61" font-size="14" font-weight="bold" fill="white" text-anchor="middle" font-family="Arial">M</text>
+  
+  <!-- Círculo 2 Boehm (Azul) -->
+  <circle cx="135" cy="55" r="12" fill="url(#grad2)" opacity="0.8" filter="url(#shadow)"/>
+  <text x="135" y="61" font-size="14" font-weight="bold" fill="white" text-anchor="middle" font-family="Arial">B</text>
+  
+  <!-- Círculo 3 FURPS (Amarillo) -->
+  <circle cx="100" cy="155" r="12" fill="url(#grad3)" opacity="0.8" filter="url(#shadow)"/>
+  <text x="100" y="161" font-size="14" font-weight="bold" fill="white" text-anchor="middle" font-family="Arial">F</text>
+  
+  <!-- Líneas conectoras desde la estrella a los círculos -->
+  <line x1="85" y1="85" x2="72" y2="65" stroke="url(#grad1)" stroke-width="2" opacity="0.4" stroke-dasharray="3,3"/>
+  <line x1="115" y1="85" x2="128" y2="65" stroke="url(#grad2)" stroke-width="2" opacity="0.4" stroke-dasharray="3,3"/>
+  <line x1="100" y1="135" x2="100" y2="143" stroke="url(#grad3)" stroke-width="2" opacity="0.4" stroke-dasharray="3,3"/>
+  
+  <!-- Puntos de calidad decorativos (pequeños) -->
+  <circle cx="50" cy="100" r="3" fill="url(#grad1)" opacity="0.6"/>
+  <circle cx="150" cy="100" r="3" fill="url(#grad2)" opacity="0.6"/>
+  <circle cx="100" cy="45" r="3" fill="url(#grad3)" opacity="0.6"/>
+  
+  <!-- Texto inferior (pequeño y opcional) -->
+  <text x="100" y="190" font-size="10" fill="#f43f5e" text-anchor="middle" font-family="Arial" font-weight="bold" opacity="0.7">CALIDAD</text>
+</svg>

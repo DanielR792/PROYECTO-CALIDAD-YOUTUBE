@@ -1,0 +1,507 @@
+body {
+  font-family: "Times New Roman", serif;
+  background-color: #ffffff;
+  margin: 40px;
+}
+
+/* TÍTULO */
+.titulo {
+  text-align: center;
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+/* TABLA */
+.tabla-software {
+  width: 80%;
+  margin: 0 auto;
+  border-collapse: collapse;
+}
+
+/* CELDAS */
+.tabla-software td {
+  border: 1px solid black;
+  padding: 8px;
+  font-size: 14px;
+  vertical-align: middle;
+}
+
+/* COLUMNA IZQUIERDA */
+.label {
+  width: 35%;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+/* COLUMNA DERECHA */
+.tabla-software td:last-child {
+  width: 65%;
+  height: 30px;
+}
+
+.tabla-valoracion {
+    width: 400px;
+    margin: 20px auto;
+    border-collapse: collapse;
+    font-family: "Times New Roman", serif;
+    text-align: center;
+}
+
+.tabla-valoracion th,
+.tabla-valoracion td {
+    border: 1px solid black;
+    padding: 5px;
+}
+
+.tabla-valoracion th {
+    background-color: #f4c542; /* amarillo */
+    font-weight: bold;
+}
+
+.tabla-valoracion td {
+    background-color: #d9d9d9; /* gris */
+}
+
+.tabla-maccall {
+    width: 700px;
+    margin: 20px auto;
+    border-collapse: collapse;
+    font-family: "Times New Roman", serif;
+    text-align: center;
+}
+
+.tabla-maccall th,
+.tabla-maccall td {
+    border: 1px solid black;
+    padding: 6px;
+}
+
+.tabla-maccall th {
+    background-color: #f4c542; /* amarillo encabezado */
+    font-weight: bold;
+}
+
+/* Colores por sección */
+.operacion {
+    background-color: #d9c2a8;
+}
+
+.transicion {
+    background-color: #b7c3cf;
+}
+
+.revision {
+    background-color: #e6d8b5;
+}
+
+/* Fila total */
+.total-label {
+    background-color: #cfcfcf;
+    font-weight: bold;
+}
+
+.total-valor {
+    background-color: #cfcfcf;
+    font-weight: bold;
+}
+
+.black-cell {
+    background-color: black;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    max-width: 700px;
+    font-family: "Times New Roman", Times, serif;
+    text-align: center;
+    border: 2px solid black;
+}
+
+th, td {
+    border: 1px solid black;
+    padding: 8px;
+}
+
+th {
+    background-color: #F4D03F;
+    font-weight: bold;
+}
+
+.operacion {
+    background-color: #FCE4D6;
+}
+
+.transicion {
+    background-color: #DDEBF7;
+}
+
+.revision {
+    background-color: #FFF2CC;
+}
+
+.footer-gris {
+    background-color: #D9D9D9;
+}
+
+.footer-negro {
+    background-color: #000000;
+}
+
+.align-left {
+    text-align: left;
+    padding-left: 10px;
+}
+
+.bold-text {
+    font-weight: bold;
+}
+
+
+.tabla-calidad {
+    border-collapse: collapse;
+    width: 100%;
+    max-width: 1000px;
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    text-align: center;
+    border: 1px solid black;
+}
+
+.tabla-calidad th, .tabla-calidad td {
+    border: 1px solid black;
+    padding: 6px;
+}
+
+.top-left-cell {
+    background-color: transparent;
+    border-top: 1px dashed black !important;
+    border-left: 1px dashed black !important;
+    font-style: italic;
+    text-align: left;
+    vertical-align: top;
+    font-weight: normal;
+}
+
+.bg-yellow {
+    background-color: #FFC000;
+    font-weight: bold;
+}
+
+.bg-peach {
+    background-color: #FCE4D6;
+    font-weight: bold;
+}
+
+.bg-blue {
+    background-color: #DDEBF7;
+    font-weight: bold;
+}
+
+.bg-lightyellow {
+    background-color: #FFF2CC;
+    font-weight: bold;
+}
+
+.bottom-align {
+    vertical-align: bottom;
+    padding-bottom: 10px;
+}
+
+.vertical-text {
+    height: 180px; /* Ajuste para dar espacio al texto vertical */
+    vertical-align: bottom;
+    padding-bottom: 5px;
+    white-space: nowrap;
+}
+
+.vertical-text span {
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    display: inline-block;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.dot {
+    font-size: 16px;
+}
+
+
+
+
+.tabla-evaluacion {
+    border-collapse: collapse;
+    width: 100%;
+    max-width: 900px;
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    border: 2px solid black;
+}
+
+.tabla-evaluacion th, .tabla-evaluacion td {
+    border: 1px solid black;
+    padding: 8px;
+    vertical-align: top;
+}
+
+.tabla-evaluacion th {
+    background-color: #FFC000; /* Amarillo oscuro/dorado */
+    font-weight: bold;
+    text-align: center;
+    vertical-align: middle;
+    border: 2px solid black; /* Bordes más gruesos en el encabezado como en la imagen */
+}
+
+.tabla-evaluacion .col-texto {
+    text-align: left;
+}
+
+
+.tabla-consolidacion {
+    border-collapse: collapse;
+    width: 100%;
+    max-width: 1000px;
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    text-align: center;
+    border: 1px solid black;
+}
+
+.tabla-consolidacion th, .tabla-consolidacion td {
+    border: 1px solid black;
+    padding: 6px;
+}
+
+.tabla-consolidacion .top-left-cell {
+    background-color: transparent;
+    border-top: 1px dashed black !important;
+    border-left: 1px dashed black !important;
+    font-style: italic;
+    text-align: left;
+    vertical-align: top;
+    font-weight: normal;
+}
+
+.tabla-consolidacion .bg-yellow {
+    background-color: #FFC000;
+    font-weight: bold;
+}
+
+.tabla-consolidacion .bg-peach {
+    background-color: #FCE4D6;
+    font-weight: bold;
+}
+
+.tabla-consolidacion .bg-blue {
+    background-color: #DDEBF7;
+    font-weight: bold;
+}
+
+.tabla-consolidacion .bg-lightyellow {
+    background-color: #FFF2CC;
+    font-weight: bold;
+}
+
+.tabla-consolidacion .bg-gray {
+    background-color: #D9D9D9;
+}
+
+.tabla-consolidacion .bottom-align {
+    vertical-align: bottom;
+    padding-bottom: 10px;
+}
+
+.tabla-consolidacion .vertical-text {
+    height: 180px;
+    vertical-align: bottom;
+    padding-bottom: 5px;
+    white-space: nowrap;
+}
+
+.tabla-consolidacion .vertical-text span {
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    display: inline-block;
+}
+
+.tabla-consolidacion .text-left {
+    text-align: left;
+}
+
+.tabla-consolidacion .bold-text {
+    font-weight: bold;
+}
+
+
+.tabla-resultado {
+    border-collapse: collapse;
+    width: 100%;
+    max-width: 850px;
+    font-family: "Times New Roman", Times, serif;
+    text-align: center;
+    border: 2px solid black;
+}
+
+.tabla-resultado th, .tabla-resultado td {
+    border: 1px solid black;
+    padding: 8px;
+}
+
+.tabla-resultado th {
+    background-color: #F4D03F; /* Amarillo oro */
+    font-weight: bold;
+}
+
+.tabla-resultado .operacion {
+    background-color: #FCE4D6; /* Durazno claro */
+}
+
+.tabla-resultado .transicion {
+    background-color: #DDEBF7; /* Azul claro */
+}
+
+.tabla-resultado .revision {
+    background-color: #FFF2CC; /* Amarillo claro */
+}
+
+.tabla-resultado .footer-gris {
+    background-color: #D9D9D9; /* Gris */
+}
+
+.tabla-resultado .footer-negro {
+    background-color: #000000; /* Negro */
+}
+
+.tabla-resultado .align-left {
+    text-align: left;
+    padding-left: 10px;
+}
+
+.tabla-resultado .bold-text {
+    font-weight: bold;
+}
+
+
+
+.tabla-caracteristicas {
+    border-collapse: collapse;
+    width: 100%;
+    max-width: 1000px;
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    text-align: center;
+    border: 2px solid black;
+    margin-bottom: 40px; /* Separación entre tablas */
+}
+
+.tabla-caracteristicas th, .tabla-caracteristicas td {
+    border: 1px solid black;
+    padding: 6px;
+}
+
+/* Colores de encabezados y fondos */
+.tabla-caracteristicas th {
+    background-color: #FFC000; /* Amarillo encabezados */
+    font-weight: bold;
+}
+
+.bg-darkblue {
+    background-color: #002060; /* Azul oscuro barra lateral */
+    color: white;
+    font-weight: bold;
+    width: 40px;
+}
+
+.bg-peach {
+    background-color: #FCE4D6; /* Portabilidad */
+}
+
+.bg-lightblue {
+    background-color: #DDEBF7; /* Utilidad */
+}
+
+.bg-lightyellow {
+    background-color: #FFF2CC; /* Mantenibilidad */
+}
+
+.footer-grey {
+    background-color: #D9D9D9;
+    font-weight: bold;
+}
+
+.footer-black {
+    background-color: #000000;
+}
+
+/* Utilidades de texto */
+.text-left {
+    text-align: left;
+    padding-left: 8px;
+}
+
+.vertical-text {
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    text-align: center;
+    white-space: nowrap;
+    margin: auto;
+}
+
+
+.tabla-furps {
+    border-collapse: collapse;
+    width: 100%;
+    max-width: 850px;
+    font-family: "Times New Roman", Times, serif;
+    text-align: center;
+    border: 2px solid black;
+    margin-bottom: 50px;
+}
+
+.tabla-furps th, .tabla-furps td {
+    border: 1px solid black;
+    padding: 6px;
+    vertical-align: middle;
+}
+
+/* Encabezados amarillos */
+.furps-header {
+    background-color: #FFC000;
+    font-weight: bold;
+}
+
+/* Columna lateral azul oscuro */
+.furps-dark {
+    background-color: #002060;
+    color: #FFC000;
+    font-weight: bold;
+    font-size: 16px;
+    width: 30px;
+}
+
+/* Colores de las filas del modelo FURPS */
+.furps-f { background-color: #FCE4D6; } /* Durazno */
+.furps-u { background-color: #DDEBF7; } /* Azul claro */
+.furps-r { background-color: #FFF2CC; } /* Amarillo claro */
+.furps-p { background-color: #D0A9FF; } /* Morado */
+.furps-s { background-color: #C6E0B4; } /* Verde claro */
+
+/* Utilidades de fondo y texto */
+.bg-white { background-color: #FFFFFF !important; }
+.bg-grey { background-color: #D9D9D9 !important; }
+.bg-black { background-color: #000000 !important; }
+
+.bold-text { font-weight: bold; }
+.text-left { text-align: left; padding-left: 8px; }
+
+/* Texto vertical para la primera tabla */
+.vertical-word {
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    white-space: nowrap;
+    margin: auto;
+}
